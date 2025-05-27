@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class JanelaInicial extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
+    
     List<Aluno> alunos;
     /**
      * Creates new form JanelaInicial
@@ -271,13 +271,11 @@ public class JanelaInicial extends javax.swing.JFrame {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(this, "Erro! A idade deve ser um número válido.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
                 textIdade.requestFocus();
-                logger.log(java.util.logging.Level.WARNING, "Erro ao converter idade: " + idadeStr, e);
                 return;
             }
         }
         for(Aluno alunoExiste:alunos) {
             if(alunoExiste.getMatricula().equalsIgnoreCase(matricula)) {
-                JOptionPane.showMessageDialog(this,"Uma matricula igual foi encontrada","Erro",JOptionPane.ERROR_MESSAGE);
                 textMatricula.requestFocus();
                 throw new Exception("Erro de matricula igual");
                 
@@ -302,7 +300,7 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     } catch (Exception e) { 
         JOptionPane.showMessageDialog(this, "Ocorreu um erro inesperado: " + e.getMessage(), "Erro Crítico", JOptionPane.ERROR_MESSAGE);
-        logger.log(java.util.logging.Level.SEVERE, "Erro inesperado ao adicionar aluno", e);
+        
     }
         // TODO add your handling code here:
     }//GEN-LAST:event_adicionarAlunoActionPerformed
@@ -324,7 +322,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            
         }
         //</editor-fold>
 
