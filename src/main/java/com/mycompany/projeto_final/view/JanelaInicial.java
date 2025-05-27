@@ -14,6 +14,7 @@ import java.util.List;
  */
 public class JanelaInicial extends javax.swing.JFrame {
     
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
     
     List<Aluno> alunos;
     /**
@@ -372,7 +373,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                 }
             }
         } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
