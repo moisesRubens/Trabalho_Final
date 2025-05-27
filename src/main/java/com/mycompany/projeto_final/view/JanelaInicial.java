@@ -51,6 +51,9 @@ public class JanelaInicial extends javax.swing.JFrame {
         textTelefone = new javax.swing.JTextField();
         textIdade = new javax.swing.JTextField();
         adicionarAluno = new javax.swing.JButton();
+        labelConsultarAluno = new javax.swing.JLabel();
+        textConsultarAluno = new javax.swing.JTextField();
+        consultarAluno = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -129,6 +132,21 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
+        labelConsultarAluno.setText("CONSULTAR ALUNO:");
+
+        textConsultarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textConsultarAlunoActionPerformed(evt);
+            }
+        });
+
+        consultarAluno.setText("CONSULTAR");
+        consultarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarAlunoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAlunoLayout = new javax.swing.GroupLayout(painelAluno);
         painelAluno.setLayout(painelAlunoLayout);
         painelAlunoLayout.setHorizontalGroup(
@@ -136,36 +154,42 @@ public class JanelaInicial extends javax.swing.JFrame {
             .addGroup(painelAlunoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelIdade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(painelAlunoLayout.createSequentialGroup()
                             .addComponent(labelTelefone)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
+                            .addComponent(textTelefone))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                            .addComponent(labelDataDeNascimento)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textDataDeNascimento))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
                             .addComponent(labelCpf)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(textCpf))
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
                             .addComponent(labelNome)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(textNome))
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelMatricula)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
                             .addComponent(voltarDeAluno)
                             .addGap(18, 18, 18)
-                            .addComponent(adicionarAluno)))
+                            .addComponent(adicionarAluno))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                            .addComponent(labelIdade)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(textIdade)))
                     .addGroup(painelAlunoLayout.createSequentialGroup()
-                        .addComponent(labelDataDeNascimento)
+                        .addComponent(labelMatricula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(298, Short.MAX_VALUE))
+                        .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
+                        .addComponent(labelConsultarAluno)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(consultarAluno)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelAlunoLayout.setVerticalGroup(
             painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +197,10 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelMatricula)
-                    .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelConsultarAluno)
+                    .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultarAluno))
                 .addGap(18, 18, 18)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelNome)
@@ -194,7 +221,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelIdade)
                     .addComponent(textIdade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarDeAluno)
                     .addComponent(adicionarAluno))
@@ -305,6 +332,29 @@ public class JanelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_adicionarAlunoActionPerformed
 
+    private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textConsultarAlunoActionPerformed
+
+    private void consultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunoActionPerformed
+       String consultarMatricula = textConsultarAluno.getText().trim();
+       if(consultarMatricula.isEmpty()) {
+           JOptionPane.showMessageDialog(this,"O campo \" CONSULTAR \" está vazio.","Erro",JOptionPane.INFORMATION_MESSAGE);
+           textConsultarAluno.requestFocus();
+         
+       } else {
+           for(Aluno alunoExiste:alunos) {
+               if(alunoExiste.getMatricula().equalsIgnoreCase(consultarMatricula)) {
+                   String dadosAluno = String.format("Aluno Adicionado:\nMatrícula: %s\nNome: %s\nCPF: %s\nData Nasc: %s\nTelefone: %s\nIdade: %d",alunoExiste.getMatricula(),alunoExiste.getNome(),alunoExiste.getCpf(),alunoExiste.getDataNascimento(),alunoExiste.getTelefone(),alunoExiste.getIdade());
+                   JOptionPane.showMessageDialog(this,dadosAluno,"Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
+               } else
+                   JOptionPane.showMessageDialog(this,"Nenhum aluno encontrado com essa matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
+               
+           }
+       }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_consultarAlunoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -333,6 +383,8 @@ public class JanelaInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aluno;
     private javax.swing.JButton adicionarAluno;
+    private javax.swing.JButton consultarAluno;
+    private javax.swing.JLabel labelConsultarAluno;
     private javax.swing.JLabel labelCpf;
     private javax.swing.JLabel labelDataDeNascimento;
     private javax.swing.JLabel labelIdade;
@@ -341,6 +393,7 @@ public class JanelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JPanel painelAluno;
     private javax.swing.JPanel painelPrincipal;
+    private javax.swing.JTextField textConsultarAluno;
     private javax.swing.JTextField textCpf;
     private javax.swing.JTextField textDataDeNascimento;
     private javax.swing.JTextField textIdade;
