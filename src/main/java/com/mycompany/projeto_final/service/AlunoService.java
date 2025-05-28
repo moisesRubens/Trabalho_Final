@@ -22,4 +22,27 @@ public class AlunoService {
         }
         return false;
     }
+    
+    public static String getAluno(String matricula) {
+        String dadosAluno = "ALUNO NÃO ENCONTRADO";
+           
+        if(!matricula.isEmpty()) {
+            for(Aluno aluno : alunos) {
+                if(aluno.getMatricula().equals(matricula)) {
+                    dadosAluno = "ALUNO CONSULTADO: \n" +
+                                 "MATRÍCULA: " + aluno.getMatricula() + "\n" +
+                                 "NOME: " + aluno.getNome() + "\n" + 
+                                 "CPF: " + aluno.getCpf() + "\n" + 
+                                 "DATA DE NASCIMENTO: " + aluno.getDataNascimento() + "\n" + 
+                                 "TELEFONE: " + aluno.getTelefone() + "\n" + 
+                                 "IDADE: " + aluno.getIdade();
+                }
+            }
+        }
+        return dadosAluno;
+    } 
+    
+    public static int getTotalAlunos() {
+        return 0;
+    }
 }

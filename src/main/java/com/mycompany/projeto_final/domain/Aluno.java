@@ -16,6 +16,8 @@ public class Aluno {
         this.cpf = cpf;
         this.idade = idade;
     }
+    
+    
 
     public void setNome(String nome) {
         this.nome = nome;
