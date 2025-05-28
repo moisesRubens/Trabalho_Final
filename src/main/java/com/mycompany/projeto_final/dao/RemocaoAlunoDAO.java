@@ -7,7 +7,13 @@ public class RemocaoAlunoDAO implements AlunoDAO {
 
     @Override
     public List removerAluno(List alunos, Aluno a) {
-        return null;
+        try {
+            
+        } catch(RuntimeException e) {
+            e.printStackTrace();
+        } finally { 
+            return alunos;
+        }
     }
     
 }

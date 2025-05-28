@@ -281,29 +281,13 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_textConsultarAlunoActionPerformed
 
     private void consultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunoActionPerformed
-       String consultarMatricula = textConsultarAluno.getText().trim();
-       if(consultarMatricula.isEmpty()) {
-           JOptionPane.showMessageDialog(this,"O campo \" CONSULTAR \" está vazio.","Erro",JOptionPane.INFORMATION_MESSAGE);
-           textConsultarAluno.requestFocus();
-         
-       } else {
-           for(Aluno alunoExiste:alunos) {
-               if(alunoExiste.getMatricula().equalsIgnoreCase(consultarMatricula)) {
-                   String dadosAluno = String.format("Aluno Adicionado:\nMatrícula: %s\nNome: %s\nCPF: %s\nData Nasc: %s\nTelefone: %s\nIdade: %d",alunoExiste.getMatricula(),alunoExiste.getNome(),alunoExiste.getCpf(),alunoExiste.getDataNascimento(),alunoExiste.getTelefone(),alunoExiste.getIdade());
-                   JOptionPane.showMessageDialog(this,dadosAluno,"Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
-               } else {
-                   JOptionPane.showMessageDialog(this,"Nenhum aluno encontrado com essa matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
-               }
-           }
-           if(alunos.isEmpty()) {
-               JOptionPane.showMessageDialog(this,"Nenhum aluno foi adicionado","Lista Vazia",JOptionPane.INFORMATION_MESSAGE);
-           }
-       }
-        // TODO add your handling code here:
+        String consultarMatricula = textConsultarAluno.getText().trim();
+        String message = AlunoService.getAluno(consultarMatricula);
+        JOptionPane.showMessageDialog(this, message, "Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_consultarAlunoActionPerformed
 
     private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed
@@ -312,7 +296,6 @@ public class JanelaInicial extends javax.swing.JFrame {
        } else {
            JOptionPane.showMessageDialog(this,"A quantidade de alunos total é: "+ alunos.size(),"Total Alunos",JOptionPane.INFORMATION_MESSAGE);
        }
-        // TODO add your handling code here:0
     }//GEN-LAST:event_totalAlunosActionPerformed
 
     /**
