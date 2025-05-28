@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projeto_final.view;
-import com.mycompany.projeto_final.Aluno;
+import com.mycompany.projeto_final.domain.Aluno;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -55,6 +55,7 @@ public class JanelaInicial extends javax.swing.JFrame {
         labelConsultarAluno = new javax.swing.JLabel();
         textConsultarAluno = new javax.swing.JTextField();
         consultarAluno = new javax.swing.JButton();
+        totalAlunos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -148,6 +149,13 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
+        totalAlunos.setText("TOTAL ALUNOS");
+        totalAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalAlunosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAlunoLayout = new javax.swing.GroupLayout(painelAluno);
         painelAluno.setLayout(painelAlunoLayout);
         painelAlunoLayout.setHorizontalGroup(
@@ -155,31 +163,34 @@ public class JanelaInicial extends javax.swing.JFrame {
             .addGroup(painelAlunoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelTelefone)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textTelefone))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelDataDeNascimento)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textDataDeNascimento))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelCpf)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textCpf))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelNome)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textNome))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                            .addComponent(voltarDeAluno)
-                            .addGap(18, 18, 18)
-                            .addComponent(adicionarAluno))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                            .addComponent(labelIdade)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(textIdade)))
+                    .addGroup(painelAlunoLayout.createSequentialGroup()
+                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelTelefone)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textTelefone))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelDataDeNascimento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textDataDeNascimento))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textCpf))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textNome))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(voltarDeAluno)
+                                .addGap(18, 18, 18)
+                                .addComponent(adicionarAluno))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelIdade)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textIdade)))
+                        .addGap(18, 18, 18)
+                        .addComponent(totalAlunos))
                     .addGroup(painelAlunoLayout.createSequentialGroup()
                         .addComponent(labelMatricula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -225,7 +236,8 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarDeAluno)
-                    .addComponent(adicionarAluno))
+                    .addComponent(adicionarAluno)
+                    .addComponent(totalAlunos))
                 .addGap(19, 19, 19))
         );
 
@@ -348,13 +360,25 @@ public class JanelaInicial extends javax.swing.JFrame {
                if(alunoExiste.getMatricula().equalsIgnoreCase(consultarMatricula)) {
                    String dadosAluno = String.format("Aluno Adicionado:\nMatrícula: %s\nNome: %s\nCPF: %s\nData Nasc: %s\nTelefone: %s\nIdade: %d",alunoExiste.getMatricula(),alunoExiste.getNome(),alunoExiste.getCpf(),alunoExiste.getDataNascimento(),alunoExiste.getTelefone(),alunoExiste.getIdade());
                    JOptionPane.showMessageDialog(this,dadosAluno,"Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
-               } else
+               } else {
                    JOptionPane.showMessageDialog(this,"Nenhum aluno encontrado com essa matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
-               
+               }
+           }
+           if(alunos.isEmpty()) {
+               JOptionPane.showMessageDialog(this,"Nenhum aluno foi adicionado","Lista Vazia",JOptionPane.INFORMATION_MESSAGE);
            }
        }
         // TODO add your handling code here:
     }//GEN-LAST:event_consultarAlunoActionPerformed
+
+    private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed
+       if(alunos.isEmpty()) {
+           JOptionPane.showMessageDialog(this,"Não existem alunos na lista","Lista Vazia",JOptionPane.INFORMATION_MESSAGE);
+       } else {
+           JOptionPane.showMessageDialog(this,"A quantidade de alunos total é: "+ alunos.size(),"Total Alunos",JOptionPane.INFORMATION_MESSAGE);
+       }
+        // TODO add your handling code here:0
+    }//GEN-LAST:event_totalAlunosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,6 +426,7 @@ public class JanelaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField textNome;
     private javax.swing.JTextField textTelefone;
     private javax.swing.JLabel tituloPrincipal;
+    private javax.swing.JButton totalAlunos;
     private javax.swing.JButton voltarDeAluno;
     // End of variables declaration//GEN-END:variables
 }
