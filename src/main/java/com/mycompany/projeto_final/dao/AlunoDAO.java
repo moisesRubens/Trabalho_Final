@@ -1,13 +1,12 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
 package com.mycompany.projeto_final.dao;
 
-/**
- *
- * @author moise
- */
-public class AlunoDAO {
-    
+import com.mycompany.projeto_final.domain.Aluno;
+import java.util.List;
+
+public interface AlunoDAO {
+    public List removerAluno(List alunos, Aluno a);
 }

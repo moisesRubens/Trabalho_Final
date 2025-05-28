@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.projeto_final.service;
 
-/**
- *
- * @author moise
- */
+import com.mycompany.projeto_final.domain.Aluno;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AlunoService {
+    static List<Aluno> alunos = new ArrayList<>();
     
+    private static boolean existeAluno(String matricula) {
+        for(Aluno aluno : alunos) {
+            if(aluno.getMatricula().equals(matricula))
+                return true;
+        }
+        return false;
+    }
+    
+    public static boolean cadastrarAluno(Aluno aluno) {
+        if(!existeAluno(aluno.getMatricula())) {
+            alunos.add(aluno);
+            return true;
+        }
+        return false;
+    }
 }

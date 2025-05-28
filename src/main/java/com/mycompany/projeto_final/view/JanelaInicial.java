@@ -4,6 +4,7 @@
  */
 package com.mycompany.projeto_final.view;
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.service.AlunoService;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class JanelaInicial extends javax.swing.JFrame {
         textDataDeNascimento = new javax.swing.JTextField();
         textTelefone = new javax.swing.JTextField();
         textIdade = new javax.swing.JTextField();
-        adicionarAluno = new javax.swing.JButton();
+        cadastrarAluno = new javax.swing.JButton();
         labelConsultarAluno = new javax.swing.JLabel();
         textConsultarAluno = new javax.swing.JTextField();
         consultarAluno = new javax.swing.JButton();
@@ -127,10 +128,10 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
-        adicionarAluno.setText("ADICIONAR ALUNO");
-        adicionarAluno.addActionListener(new java.awt.event.ActionListener() {
+        cadastrarAluno.setText("ADICIONAR ALUNO");
+        cadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarAlunoActionPerformed(evt);
+                cadastrarAlunoActionPerformed(evt);
             }
         });
 
@@ -184,7 +185,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
                                 .addComponent(voltarDeAluno)
                                 .addGap(18, 18, 18)
-                                .addComponent(adicionarAluno))
+                                .addComponent(cadastrarAluno))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
                                 .addComponent(labelIdade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -236,7 +237,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarDeAluno)
-                    .addComponent(adicionarAluno)
+                    .addComponent(cadastrarAluno)
                     .addComponent(totalAlunos))
                 .addGap(19, 19, 19))
         );
@@ -266,84 +267,18 @@ public class JanelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textCpfActionPerformed
 
-    private void adicionarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAlunoActionPerformed
-        try {
-        String matricula = textMatricula.getText().trim();
-        String nome = textNome.getText().trim(); // Adicionado .trim()
-        String cpf = textCpf.getText().trim();
-        String telefone = textTelefone.getText().trim();
-        String idadeStr = textIdade.getText().trim();
-        String dataDeNascimento = textDataDeNascimento.getText().trim();
-
-        // Validações básicas
-        if (matricula.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Erro! A matrícula está vazia.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-            textMatricula.requestFocus(); 
-            return;
-        }
-
-        if (nome.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Erro! O nome está vazio.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-            textNome.requestFocus();
-            return;
-        }
-
-        if (cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Erro! O CPF está vazio.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-            textCpf.requestFocus();
-            return;
-        }
+    private void cadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoActionPerformed
+        int idade = Integer.parseInt(textIdade.getText());
+        Aluno aluno = new Aluno(textNome.getText(), textMatricula.getText(), 
+                                textDataDeNascimento.getText(), textTelefone.getText(),
+                                textCpf.getText(), idade);
         
-
-        int idade = 0;
-        if (idadeStr.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Erro! A idade está vazia.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-            textIdade.requestFocus();
-            return;
-        } else {
-            try {
-                idade = Integer.parseInt(idadeStr);
-                if (idade <= 0) { 
-                    JOptionPane.showMessageDialog(this, "Erro! Idade inválida.", "Erro de Validação", JOptionPane.ERROR_MESSAGE);
-                    textIdade.requestFocus();
-                    return;
-                }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Erro! A idade deve ser um número válido.", "Erro de Formato", JOptionPane.ERROR_MESSAGE);
-                textIdade.requestFocus();
-                return;
-            }
-        }
-        for(Aluno alunoExiste:alunos) {
-            if(alunoExiste.getMatricula().equalsIgnoreCase(matricula)) {
-                textMatricula.requestFocus();
-                throw new Exception("Erro de matricula igual");
-                
-            }
-        }
-
-     
-        Aluno aluno = new Aluno(nome,matricula,dataDeNascimento,telefone,cpf,idade);
-        alunos.add(aluno);
-         String dadosAluno = String.format("Aluno Adicionado:\nMatrícula: %s\nNome: %s\nCPF: %s\nData Nasc: %s\nTelefone: %s\nIdade: %d",
-                matricula, nome, cpf, dataDeNascimento, telefone, idade);
-        JOptionPane.showMessageDialog(this,dadosAluno, "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-      
-        textMatricula.setText("");
-        textNome.setText("");
-        textCpf.setText("");
-        textDataDeNascimento.setText("");
-        textTelefone.setText("");
-        textIdade.setText("");
-        textMatricula.requestFocus(); 
-
-    } catch (Exception e) { 
-        JOptionPane.showMessageDialog(this, "Ocorreu um erro inesperado: " + e.getMessage(), "Erro Crítico", JOptionPane.ERROR_MESSAGE);
-        
-    }
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adicionarAlunoActionPerformed
+        String message = "ALUNO NãO CADASTRADO";
+        if(AlunoService.cadastrarAluno(aluno)) {
+            message = "ALUNO CADASTRADO";
+        } 
+        JOptionPane.showMessageDialog(this, message, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
         // TODO add your handling code here:
@@ -407,7 +342,7 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aluno;
-    private javax.swing.JButton adicionarAluno;
+    private javax.swing.JButton cadastrarAluno;
     private javax.swing.JButton consultarAluno;
     private javax.swing.JLabel labelConsultarAluno;
     private javax.swing.JLabel labelCpf;
