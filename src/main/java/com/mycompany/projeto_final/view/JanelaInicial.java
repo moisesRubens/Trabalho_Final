@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projeto_final.view;
-import com.mycompany.projeto_final.Aluno;
+import com.mycompany.projeto_final.domain.Aluno;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
