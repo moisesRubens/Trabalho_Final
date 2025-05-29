@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.projeto_final.view;
-import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.controller.AlunoController;
 import com.mycompany.projeto_final.service.AlunoService;
+import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.domain.AlunoRequestDTO;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
@@ -269,15 +271,11 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     private void cadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoActionPerformed
         int idade = Integer.parseInt(textIdade.getText());
-        Aluno aluno = new Aluno(textNome.getText(), textMatricula.getText(), 
-                                textDataDeNascimento.getText(), textTelefone.getText(),
-                                textCpf.getText(), idade);
-        
-        String message = "ALUNO NãO CADASTRADO";
-        if(AlunoService.cadastrarAluno(aluno)) {
-            message = "ALUNO CADASTRADO";
-        } 
-        JOptionPane.showMessageDialog(this, message, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+        AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
+                                                    textDataDeNascimento.getText(), textCpf.getText(),
+                                                    textTelefone.getText(), idade);
+        String mensagem = AlunoController.cadastrarAluno(dadosAluno);
+        JOptionPane.showMessageDialog(this, mensagem, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
@@ -285,17 +283,14 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_textConsultarAlunoActionPerformed
 
     private void consultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunoActionPerformed
-        String consultarMatricula = textConsultarAluno.getText().trim();
-        String message = AlunoService.getAluno(consultarMatricula);
-        JOptionPane.showMessageDialog(this, message, "Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
+        String matricula = textConsultarAluno.getText().trim();
+        String mensagem = AlunoController.consultarAluno(matricula);
+        JOptionPane.showMessageDialog(this, mensagem, "Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_consultarAlunoActionPerformed
 
     private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed
-       if(alunos.isEmpty()) {
-           JOptionPane.showMessageDialog(this,"Não existem alunos na lista","Lista Vazia",JOptionPane.INFORMATION_MESSAGE);
-       } else {
-           JOptionPane.showMessageDialog(this,"A quantidade de alunos total é: "+ alunos.size(),"Total Alunos",JOptionPane.INFORMATION_MESSAGE);
-       }
+       Integer quantidade = AlunoController.quantidadeTotalDeAlunos();
+       JOptionPane.showMessageDialog(this, quantidade.toString(), "QUANTIDADE DE ALUNOS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_totalAlunosActionPerformed
 
     /**
