@@ -265,6 +265,7 @@ public class JanelaInicial extends javax.swing.JFrame {
         try {
             String dataDeNascimento = formattedTextFieldDataDeNascimento.getText();
             DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            //data inserida e tranformada num LocalDate
             LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
             
             AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
@@ -273,7 +274,7 @@ public class JanelaInicial extends javax.swing.JFrame {
             AlunoController.cadastrarAluno(dadosAluno);
             String mensagem = "ALUNO CADASTRADO";
             JOptionPane.showMessageDialog(this, mensagem, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(AlunoJaCadastradoException e) {
+        } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CADASTRAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
         } 
     }//GEN-LAST:event_cadastrarAlunoActionPerformed

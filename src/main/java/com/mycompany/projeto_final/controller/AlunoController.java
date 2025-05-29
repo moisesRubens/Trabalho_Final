@@ -10,7 +10,7 @@ import com.mycompany.projeto_final.service.AlunoService;
 
 public class AlunoController {
     
-    public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws AlunoJaCadastradoException {
+    public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws IllegalArgumentException, AlunoJaCadastradoException {
         Aluno aluno = new Aluno(dadosAluno.nome(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf());
         
