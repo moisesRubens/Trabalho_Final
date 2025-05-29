@@ -1,7 +1,11 @@
 package com.mycompany.projeto_final.service;
 
 import com.mycompany.projeto_final.domain.Aluno;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class AlunoService {
@@ -19,7 +23,74 @@ public class AlunoService {
         return false;
     }
     
+    private static boolean verificarCpf(String cpf) {
+        char[] str = cpf.toCharArray();
+        
+        if(cpf.length() != 11) {
+            return false;
+        }
+        for(char c : str) {
+            if(Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static boolean verificarIdade(int idade) {
+        return(idade >= 0 && idade <= 130); 
+    }
+    
+    private static boolean verificarNome(String nome) {
+        char[] str = nome.toCharArray();
+        
+        for(char c : str) {
+            if(Character.isDigit(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static boolean verificarTelefone(String telefone) {
+        char[] str = telefone.toCharArray();
+        
+        if(telefone.length() != 11) {
+            return false;
+        }
+        for(char c : str) {
+            if(Character.isLetter(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static int verificarDataDeNascimento(LocalDate date) {
+        LocalDate now = LocalDate.now();
+        
+        if(date == null || date.isAfter(now)) {
+            return -1;
+        }
+        
+        int idade = Period.between(date, now).getYears();
+        
+        if(idade < 0 || idade > 130) {
+            return -1;
+        }
+        return idade;
+    }
+    
     public static boolean addAluno(Aluno aluno) {
+        aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
+        int idade = aluno.getIdade();
+        
+        if(!verificarCpf(aluno.getCpf()) || !verificarIdade(aluno.getIdade()) 
+          || !verificarNome(aluno.getNome()) || !verificarTelefone(aluno.getTelefone())
+          || idade == -1) {
+            throw new RuntimeException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
+        }
+       
         if(!existeAluno(aluno.getMatricula())) {
             alunos.add(aluno);
             return true;

@@ -12,7 +12,7 @@ public class AlunoController {
     
     public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws AlunoJaCadastradoException {
         Aluno aluno = new Aluno(dadosAluno.nome(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
-                                dadosAluno.telefone(), dadosAluno.cpf(), dadosAluno.idade());
+                                dadosAluno.telefone(), dadosAluno.cpf());
         
         if(!AlunoService.addAluno(aluno)) {
             throw new AlunoJaCadastradoException("ERRO. ALUNO JÁ EXISTENTE");

@@ -1,15 +1,16 @@
 package com.mycompany.projeto_final.domain;
 
-public record AlunoRequestDTO(String matricula, String nome,
-                              String dataNascimento, String cpf,
-                              String telefone, int idade) {
+import java.time.LocalDate;
 
-    public AlunoRequestDTO(String matricula, String nome, String dataNascimento, String cpf, String telefone, int idade) {
+public record AlunoRequestDTO(String matricula, String nome,
+                              LocalDate dataNascimento, String cpf,
+                              String telefone) {
+
+    public AlunoRequestDTO(String matricula, String nome, LocalDate dataNascimento, String cpf, String telefone) {
         this.matricula = matricula;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.cpf = cpf;
         this.telefone = telefone;
-        this.idade = idade;
     }
 }

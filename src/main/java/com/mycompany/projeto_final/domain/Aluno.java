@@ -1,24 +1,23 @@
 package com.mycompany.projeto_final.domain;
 
+import java.time.LocalDate;
+
 public class Aluno {
     private String nome;
     private String matricula;
-    private String dataNascimento;
+    private LocalDate dataNascimento;
     private String telefone;
     private String cpf;
     private int idade;
 
-    public Aluno(String nome, String matricula, String dataNascimento, String telefone, String cpf, int idade) {
+    public Aluno(String nome, String matricula, LocalDate dataNascimento, String telefone, String cpf) {
         this.nome = nome;
         this.matricula = matricula;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.cpf = cpf;
-        this.idade = idade;
     }
     
-    
-
     public void setNome(String nome) {
         this.nome = nome;
     }
@@ -35,11 +34,11 @@ public class Aluno {
         return matricula;
     }
 
-    public void setDataNascimento(String dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
-    public String getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return dataNascimento;
     }
 
