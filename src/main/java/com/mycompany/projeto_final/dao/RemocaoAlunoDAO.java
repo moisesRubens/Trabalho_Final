@@ -14,6 +14,5 @@ public class RemocaoAlunoDAO implements AlunoDAO {
         } finally { 
             return alunos;
         }
-    }
-    
+    } 
 }
