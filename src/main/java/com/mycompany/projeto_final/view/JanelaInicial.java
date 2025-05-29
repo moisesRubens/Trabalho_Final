@@ -7,24 +7,19 @@ import com.mycompany.projeto_final.controller.AlunoController;
 import com.mycompany.projeto_final.service.AlunoService;
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.domain.AlunoRequestDTO;
+import com.mycompany.projeto_final.domain.AlunoResponseDTO;
+import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.List;
-/**
- *
- * @author moise
- */
+
 public class JanelaInicial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
-    
-    List<Aluno> alunos;
-    /**
-     * Creates new form JanelaInicial
-     */
+   
     public JanelaInicial() {
-        alunos = new ArrayList<>();
         initComponents();
     }
 
@@ -270,12 +265,17 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_textCpfActionPerformed
 
     private void cadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoActionPerformed
-        int idade = Integer.parseInt(textIdade.getText());
-        AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
-                                                    textDataDeNascimento.getText(), textCpf.getText(),
-                                                    textTelefone.getText(), idade);
-        String mensagem = AlunoController.cadastrarAluno(dadosAluno);
-        JOptionPane.showMessageDialog(this, mensagem, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+        try {
+            int idade = Integer.parseInt(textIdade.getText());
+            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
+                                                        textDataDeNascimento.getText(), textCpf.getText(),
+                                                        textTelefone.getText(), idade);
+            AlunoController.cadastrarAluno(dadosAluno);
+            String mensagem = "ALUNO CADASTRADO";
+            JOptionPane.showMessageDialog(this, mensagem, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(AlunoJaCadastradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CADASTRAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
@@ -283,9 +283,20 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_textConsultarAlunoActionPerformed
 
     private void consultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunoActionPerformed
-        String matricula = textConsultarAluno.getText().trim();
-        String mensagem = AlunoController.consultarAluno(matricula);
-        JOptionPane.showMessageDialog(this, mensagem, "Dados Aluno",JOptionPane.INFORMATION_MESSAGE);
+        try {
+            String matricula = textConsultarAluno.getText().trim();
+            AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(matricula);
+            String mensagem = "ALUNO CONSULTADO: \n" +
+                              "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
+                              "NOME: " + dadosAluno.nome() + "\n" + 
+                              "CPF: " + dadosAluno.cpf() + "\n" + 
+                              "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento() + "\n" + 
+                              "TELEFONE: " + dadosAluno.telefone() + "\n" + 
+                              "IDADE: " + dadosAluno.idade();
+            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+        } catch(AlunoNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_consultarAlunoActionPerformed
 
     private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed

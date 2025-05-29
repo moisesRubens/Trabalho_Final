@@ -3,35 +3,30 @@ package com.mycompany.projeto_final.controller;
 
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.domain.AlunoRequestDTO;
+import com.mycompany.projeto_final.domain.AlunoResponseDTO;
+import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
 
 public class AlunoController {
     
-    public static String cadastrarAluno(AlunoRequestDTO dadosAluno) {
+    public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws AlunoJaCadastradoException {
         Aluno aluno = new Aluno(dadosAluno.nome(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf(), dadosAluno.idade());
-        String mensagem = "ALUNO NÃO CADASTRADO";
         
-        if(AlunoService.addAluno(aluno)) {
-            mensagem = "ALUNO CADASTRADO";
+        if(!AlunoService.addAluno(aluno)) {
+            throw new AlunoJaCadastradoException("ERRO. ALUNO JÁ EXISTENTE");
         }
-        return mensagem;
     }
     
-    public static String consultarAluno(String matricula) {
-        String dadosAluno = "ALUNO NÃO ENCONTRADO";
+    public static AlunoResponseDTO consultarAluno(String matricula) throws AlunoNaoEncontradoException {
         Aluno aluno = AlunoService.getAluno(matricula);
         
-        if(aluno != null) {
-            dadosAluno = "ALUNO CONSULTADO: \n" +
-                                 "MATRÍCULA: " + aluno.getMatricula() + "\n" +
-                                 "NOME: " + aluno.getNome() + "\n" + 
-                                 "CPF: " + aluno.getCpf() + "\n" + 
-                                 "DATA DE NASCIMENTO: " + aluno.getDataNascimento() + "\n" + 
-                                 "TELEFONE: " + aluno.getTelefone() + "\n" + 
-                                 "IDADE: " + aluno.getIdade();
+        if(aluno == null) {
+            throw new AlunoNaoEncontradoException("MATRÍCULA NAO EXISTENTE");
         }
-        return dadosAluno;
+        return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(), aluno.getDataNascimento(), 
+                                    aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());
     }
     
     public static int quantidadeTotalDeAlunos() {
