@@ -81,14 +81,14 @@ public class AlunoService {
         return idade;
     }
     
-    public static boolean addAluno(Aluno aluno) {
+    public static boolean addAluno(Aluno aluno) throws IllegalArgumentException {
         aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
         int idade = aluno.getIdade();
         
         if(!verificarCpf(aluno.getCpf()) || !verificarIdade(aluno.getIdade()) 
           || !verificarNome(aluno.getNome()) || !verificarTelefone(aluno.getTelefone())
           || idade == -1) {
-            throw new RuntimeException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
+            throw new IllegalArgumentException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
         }
        
         if(!existeAluno(aluno.getMatricula())) {
