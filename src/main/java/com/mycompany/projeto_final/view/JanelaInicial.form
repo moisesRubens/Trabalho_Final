@@ -137,6 +137,14 @@
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="botaoAlunoMaisNovo" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoAlunoMaisVelho" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -170,11 +178,14 @@
                       <Component id="labelTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="textTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="85" max="32767" attributes="0"/>
+                  <EmptySpace pref="56" max="32767" attributes="0"/>
+                  <Component id="botaoAlunoMaisVelho" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="voltarDeAluno" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cadastrarAluno" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="totalAlunos" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoAlunoMaisNovo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
@@ -268,6 +279,22 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="formattedTextFieldDataDeNascimentoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoAlunoMaisVelho">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ALUNO MAIS VELHO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAlunoMaisVelhoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoAlunoMaisNovo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ALUNO MAIS NOVO"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAlunoMaisNovoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

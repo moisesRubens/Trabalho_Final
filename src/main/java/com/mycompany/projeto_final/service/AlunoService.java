@@ -109,4 +109,41 @@ public class AlunoService {
         }
         return null;
     } 
+
+    public static Aluno verificarAlunoMaisVelho(){
+         
+        if(alunos.isEmpty()) {
+             return null;
+         }
+        Aluno alunoVelho = alunos.getFirst();
+        for(int i =1;i <alunos.size();i++) {
+            Aluno atual = alunos.get(i);
+            
+            if(atual.getIdade() >alunoVelho.getIdade()) {
+                alunoVelho = atual;
+            }
+        }
+            
+        return alunoVelho;
+    }
+    public static Aluno verificarAlunoMaisNovo() {
+         
+        if(alunos.isEmpty()) {
+             return null;
+         }
+        Aluno alunoNovo = alunos.getFirst();
+        for(int i =1;i <alunos.size();i++) {
+            Aluno atual = alunos.get(i);
+            
+            if(atual.getIdade() < alunoNovo.getIdade()) {
+                alunoNovo = atual;
+            }
+        }
+            
+        return alunoNovo;
+    }
+        
+        
+ 
+    
 }

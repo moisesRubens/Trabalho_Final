@@ -32,4 +32,15 @@ public class AlunoController {
     public static int quantidadeTotalDeAlunos() {
         return AlunoService.getAlunos().size();
     }
+    
+   public static Aluno maisVelho() {
+       
+       return AlunoService.verificarAlunoMaisVelho();
+       
+   }
+   public static Aluno maisNovo() {
+       
+       return AlunoService.verificarAlunoMaisNovo();
+       
+   }
 }
