@@ -60,6 +60,8 @@ public class JanelaInicial extends javax.swing.JFrame {
         consultarAluno = new javax.swing.JButton();
         totalAlunos = new javax.swing.JButton();
         formattedTextFieldDataDeNascimento = new javax.swing.JFormattedTextField();
+        botaoAlunoMaisVelho = new javax.swing.JButton();
+        botaoAlunoMaisNovo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
@@ -163,6 +165,20 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
+        botaoAlunoMaisVelho.setText("ALUNO MAIS VELHO");
+        botaoAlunoMaisVelho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlunoMaisVelhoActionPerformed(evt);
+            }
+        });
+
+        botaoAlunoMaisNovo.setText("ALUNO MAIS NOVO");
+        botaoAlunoMaisNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAlunoMaisNovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAlunoLayout = new javax.swing.GroupLayout(painelAluno);
         painelAluno.setLayout(painelAlunoLayout);
         painelAlunoLayout.setHorizontalGroup(
@@ -205,6 +221,12 @@ public class JanelaInicial extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(formattedTextFieldDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botaoAlunoMaisNovo)
+                    .addComponent(botaoAlunoMaisVelho))
+                .addGap(33, 33, 33))
         );
         painelAlunoLayout.setVerticalGroup(
             painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,11 +254,14 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefone)
                     .addComponent(textTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(botaoAlunoMaisVelho)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarDeAluno)
                     .addComponent(cadastrarAluno)
-                    .addComponent(totalAlunos))
+                    .addComponent(totalAlunos)
+                    .addComponent(botaoAlunoMaisNovo))
                 .addGap(19, 19, 19))
         );
 
@@ -309,6 +334,52 @@ public class JanelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formattedTextFieldDataDeNascimentoActionPerformed
 
+    private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
+         try {
+            if(AlunoController.maisNovo() != null)  {
+            Aluno aluno = AlunoController.maisNovo();
+            AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(aluno.getMatricula());
+            String mensagem = "ALUNO MAIS NOVO: \n" +
+                              "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
+                              "NOME: " + dadosAluno.nome() + "\n" + 
+                              "CPF: " + dadosAluno.cpf() + "\n" + 
+                              "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
+                              "TELEFONE: " + dadosAluno.telefone() + "\n" + 
+                              "IDADE: " + dadosAluno.idade();
+            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch(AlunoNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+        }
+         
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
+
+    private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
+     
+        try {
+            if(AlunoController.maisNovo() != null)  {
+            Aluno aluno = AlunoController.maisVelho();
+            AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(aluno.getMatricula());
+            String mensagem = "ALUNO MAIS VELHO: \n" +
+                              "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
+                              "NOME: " + dadosAluno.nome() + "\n" + 
+                              "CPF: " + dadosAluno.cpf() + "\n" + 
+                              "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
+                              "TELEFONE: " + dadosAluno.telefone() + "\n" + 
+                              "IDADE: " + dadosAluno.idade();
+            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch(AlunoNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+        }
+// TODO add your handling code here:
+    }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,6 +407,8 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aluno;
+    private javax.swing.JButton botaoAlunoMaisNovo;
+    private javax.swing.JButton botaoAlunoMaisVelho;
     private javax.swing.JButton cadastrarAluno;
     private javax.swing.JButton consultarAluno;
     private javax.swing.JFormattedTextField formattedTextFieldDataDeNascimento;
