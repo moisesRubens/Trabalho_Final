@@ -100,29 +100,34 @@ public class AlunoService {
         return false;
     }
     
-    public static boolean removerAluno(String matricula) throws AlunoNaoEncontradoException {
+    public static boolean removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
         Iterator iterator = alunos.iterator();
-        Aluno aluno = null;
+        
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
+        }
         
         while(iterator.hasNext()) {
-            aluno = (Aluno)iterator.next();
+            Aluno aluno = (Aluno)iterator.next();
             if(aluno.getMatricula().equals(matricula)) {
-                return alunos.remove(aluno);
+                iterator.remove();
+                return true;
             }
         }
         throw new AlunoNaoEncontradoException("ERRO AO REMOVER. MATRÍCULA INEXISTENTE");
     }
     
-    public static Aluno getAluno(String matricula) {
-        if(matricula == null || matricula.isEmpty()) {
-            return null;
+    public static Aluno getAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
+        
         for(Aluno aluno : alunos) {
             if(aluno.getMatricula().equals(matricula)) {
                 return aluno;
             }
         }
-        return null;
+        throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
     } 
 
     public static Aluno verificarAlunoMaisVelho(){

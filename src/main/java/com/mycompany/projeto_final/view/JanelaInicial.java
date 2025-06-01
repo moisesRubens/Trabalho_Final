@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFormattedTextField;
+import javax.swing.plaf.OptionPaneUI;
 import javax.swing.text.MaskFormatter;
 
 public class JanelaInicial extends javax.swing.JFrame {
@@ -203,6 +204,11 @@ public class JanelaInicial extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        formattedTextFieldTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formattedTextFieldTelefoneFocusGained(evt);
+            }
+        });
         formattedTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formattedTextFieldTelefoneActionPerformed(evt);
@@ -234,6 +240,11 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 textFieldRemoverALunoFocusLost(evt);
+            }
+        });
+        textFieldRemoverALuno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldRemoverALunoActionPerformed(evt);
             }
         });
 
@@ -387,7 +398,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-        } catch(AlunoNaoEncontradoException e) {
+        } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_consultarAlunoActionPerformed
@@ -456,7 +467,12 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_formattedTextFieldCpfActionPerformed
 
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
-        // TODO add your handling code here:
+        try {
+            AlunoController.removerAluno(textFieldRemoverALuno.getText());
+            JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_buttonRemoverAlunoActionPerformed
 
     private void textConsultarAlunoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textConsultarAlunoFocusLost
@@ -487,6 +503,14 @@ public class JanelaInicial extends javax.swing.JFrame {
             textFieldRemoverALuno.setText("MATRICULA");
         }
     }//GEN-LAST:event_textFieldRemoverALunoFocusLost
+
+    private void formattedTextFieldTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefoneFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldTelefoneFocusGained
+
+    private void textFieldRemoverALunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRemoverALunoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textFieldRemoverALunoActionPerformed
 
     /**
      * @param args the command line arguments
