@@ -26,7 +26,7 @@ public class AlunoService {
     private static boolean verificarCpf(String cpf) {
         char[] str = cpf.toCharArray();
         
-        if(cpf.length() != 11) {
+        if(cpf.length() != 14) {
             return false;
         }
         for(char c : str) {
