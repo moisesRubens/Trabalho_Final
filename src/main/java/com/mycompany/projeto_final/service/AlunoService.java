@@ -1,19 +1,21 @@
 package com.mycompany.projeto_final.service;
 
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 public class AlunoService {
     private static List<Aluno> alunos = new ArrayList<>();
-
-    public static List<Aluno> getAlunos() {
-        return alunos;
-    }
+    
+    public static int getSize() {
+        return alunos.size();
+    } 
     
     private static boolean existeAluno(String matricula) {
         for(Aluno aluno : alunos) {
@@ -98,16 +100,34 @@ public class AlunoService {
         return false;
     }
     
-    public static Aluno getAluno(String matricula) {
-        if(matricula == null || matricula.isEmpty()) {
-            return null;
+    public static boolean removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        Iterator iterator = alunos.iterator();
+        
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
+        
+        while(iterator.hasNext()) {
+            Aluno aluno = (Aluno)iterator.next();
+            if(aluno.getMatricula().equals(matricula)) {
+                iterator.remove();
+                return true;
+            }
+        }
+        throw new AlunoNaoEncontradoException("ERRO AO REMOVER. MATRÍCULA INEXISTENTE");
+    }
+    
+    public static Aluno getAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
+        }
+        
         for(Aluno aluno : alunos) {
             if(aluno.getMatricula().equals(matricula)) {
                 return aluno;
             }
         }
-        return null;
+        throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
     } 
 
     public static Aluno verificarAlunoMaisVelho(){

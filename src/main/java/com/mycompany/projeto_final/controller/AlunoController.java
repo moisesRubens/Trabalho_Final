@@ -19,28 +19,25 @@ public class AlunoController {
         }
     }
     
+    public static void removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        AlunoService.removerAluno(matricula);
+    }
+    
     public static AlunoResponseDTO consultarAluno(String matricula) throws AlunoNaoEncontradoException {
         Aluno aluno = AlunoService.getAluno(matricula);
-        
-        if(aluno == null) {
-            throw new AlunoNaoEncontradoException("MATRÍCULA NAO EXISTENTE");
-        }
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(), aluno.getDataNascimento(), 
                                     aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());
     }
     
     public static int quantidadeTotalDeAlunos() {
-        return AlunoService.getAlunos().size();
+        return AlunoService.getSize();
     }
     
-   public static Aluno maisVelho() {
-       
-       return AlunoService.verificarAlunoMaisVelho();
-       
-   }
-   public static Aluno maisNovo() {
-       
-       return AlunoService.verificarAlunoMaisNovo();
-       
-   }
+    public static Aluno maisVelho() {
+        return AlunoService.verificarAlunoMaisVelho(); 
+    }
+   
+    public static Aluno maisNovo() {
+        return AlunoService.verificarAlunoMaisNovo(); 
+    }
 }
