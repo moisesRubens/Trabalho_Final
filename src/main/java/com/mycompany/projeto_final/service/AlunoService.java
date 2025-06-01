@@ -32,7 +32,7 @@ public class AlunoService {
             return false;
         }
         for(char c : str) {
-            if(Character.isLetter(c)) {
+            if(Character.isLetter(c) || Character.isWhitespace(c)) {
                 return false;
             }
         }
@@ -45,6 +45,10 @@ public class AlunoService {
     
     private static boolean verificarNome(String nome) {
         char[] str = nome.toCharArray();
+        
+        if(nome.isEmpty()) {
+            return false;
+        }
         
         for(char c : str) {
             if(Character.isDigit(c)) {
@@ -61,7 +65,22 @@ public class AlunoService {
             return false;
         }
         for(char c : str) {
-            if(Character.isLetter(c)) {
+            if(Character.isLetter(c) || Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static boolean verificarMatricula(String matricula) {
+        char[] str = matricula.toCharArray();
+        
+        if(matricula.isEmpty()) {
+            return false;
+        }
+        
+        for(char c : str) {
+            if(!Character.isDigit(c)) {
                 return false;
             }
         }
@@ -89,7 +108,7 @@ public class AlunoService {
         
         if(!verificarCpf(aluno.getCpf()) || !verificarIdade(aluno.getIdade()) 
           || !verificarNome(aluno.getNome()) || !verificarTelefone(aluno.getTelefone())
-          || idade == -1) {
+          || !verificarMatricula(aluno.getMatricula()) || idade == -1) {
             throw new IllegalArgumentException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
         }
        
