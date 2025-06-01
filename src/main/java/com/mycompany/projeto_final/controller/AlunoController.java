@@ -19,6 +19,10 @@ public class AlunoController {
         }
     }
     
+    public static void removerAluno(String matricula) throws AlunoNaoEncontradoException {
+        AlunoService.removerAluno(matricula);
+    }
+    
     public static AlunoResponseDTO consultarAluno(String matricula) throws AlunoNaoEncontradoException {
         Aluno aluno = AlunoService.getAluno(matricula);
         
@@ -30,7 +34,7 @@ public class AlunoController {
     }
     
     public static int quantidadeTotalDeAlunos() {
-        return AlunoService.getAlunos().size();
+        return AlunoService.getSize();
     }
     
    public static Aluno maisVelho() {

@@ -1,19 +1,21 @@
 package com.mycompany.projeto_final.service;
 
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 public class AlunoService {
     private static List<Aluno> alunos = new ArrayList<>();
-
-    public static List<Aluno> getAlunos() {
-        return alunos;
-    }
+    
+    public static int getSize() {
+        return alunos.size();
+    } 
     
     private static boolean existeAluno(String matricula) {
         for(Aluno aluno : alunos) {
@@ -96,6 +98,19 @@ public class AlunoService {
             return true;
         }
         return false;
+    }
+    
+    public static boolean removerAluno(String matricula) throws AlunoNaoEncontradoException {
+        Iterator iterator = alunos.iterator();
+        Aluno aluno = null;
+        
+        while(iterator.hasNext()) {
+            aluno = (Aluno)iterator.next();
+            if(aluno.getMatricula().equals(matricula)) {
+                return alunos.remove(aluno);
+            }
+        }
+        throw new AlunoNaoEncontradoException("ERRO AO REMOVER. MATRÍCULA INEXISTENTE");
     }
     
     public static Aluno getAluno(String matricula) {
