@@ -55,7 +55,7 @@ public class AlunoService {
     private static boolean verificarTelefone(String telefone) {
         char[] str = telefone.toCharArray();
         
-        if(telefone.length() != 11) {
+        if(telefone.length() != 14) {
             return false;
         }
         for(char c : str) {
