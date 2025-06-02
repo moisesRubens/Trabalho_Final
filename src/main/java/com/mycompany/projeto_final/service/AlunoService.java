@@ -1,19 +1,21 @@
 package com.mycompany.projeto_final.service;
 
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import java.util.List;
 
 public class AlunoService {
     private static List<Aluno> alunos = new ArrayList<>();
-
-    public static List<Aluno> getAlunos() {
-        return alunos;
-    }
+    
+    public static int getSize() {
+        return alunos.size();
+    } 
     
     private static boolean existeAluno(String matricula) {
         for(Aluno aluno : alunos) {
@@ -26,11 +28,11 @@ public class AlunoService {
     private static boolean verificarCpf(String cpf) {
         char[] str = cpf.toCharArray();
         
-        if(cpf.length() != 11) {
+        if(cpf.length() != 14) {
             return false;
         }
         for(char c : str) {
-            if(Character.isLetter(c)) {
+            if(Character.isLetter(c) || Character.isWhitespace(c)) {
                 return false;
             }
         }
@@ -44,6 +46,10 @@ public class AlunoService {
     private static boolean verificarNome(String nome) {
         char[] str = nome.toCharArray();
         
+        if(nome.isEmpty()) {
+            return false;
+        }
+        
         for(char c : str) {
             if(Character.isDigit(c)) {
                 return false;
@@ -55,11 +61,26 @@ public class AlunoService {
     private static boolean verificarTelefone(String telefone) {
         char[] str = telefone.toCharArray();
         
-        if(telefone.length() != 11) {
+        if(telefone.length() != 14) {
             return false;
         }
         for(char c : str) {
-            if(Character.isLetter(c)) {
+            if(Character.isLetter(c) || Character.isWhitespace(c)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static boolean verificarMatricula(String matricula) {
+        char[] str = matricula.toCharArray();
+        
+        if(matricula.isEmpty()) {
+            return false;
+        }
+        
+        for(char c : str) {
+            if(!Character.isDigit(c)) {
                 return false;
             }
         }
@@ -87,7 +108,7 @@ public class AlunoService {
         
         if(!verificarCpf(aluno.getCpf()) || !verificarIdade(aluno.getIdade()) 
           || !verificarNome(aluno.getNome()) || !verificarTelefone(aluno.getTelefone())
-          || idade == -1) {
+          || !verificarMatricula(aluno.getMatricula()) || idade == -1) {
             throw new IllegalArgumentException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
         }
        
@@ -98,16 +119,34 @@ public class AlunoService {
         return false;
     }
     
-    public static Aluno getAluno(String matricula) {
-        if(matricula == null || matricula.isEmpty()) {
-            return null;
+    public static boolean removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        Iterator iterator = alunos.iterator();
+        
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
+        
+        while(iterator.hasNext()) {
+            Aluno aluno = (Aluno)iterator.next();
+            if(aluno.getMatricula().equals(matricula)) {
+                iterator.remove();
+                return true;
+            }
+        }
+        throw new AlunoNaoEncontradoException("ERRO AO REMOVER. MATRÍCULA INEXISTENTE");
+    }
+    
+    public static Aluno getAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+        if(matricula.equals("MATRICULA")) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
+        }
+        
         for(Aluno aluno : alunos) {
             if(aluno.getMatricula().equals(matricula)) {
                 return aluno;
             }
         }
-        return null;
+        throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
     } 
 
     public static Aluno verificarAlunoMaisVelho(){
