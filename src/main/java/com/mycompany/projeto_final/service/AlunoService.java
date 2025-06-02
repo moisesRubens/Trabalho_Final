@@ -126,6 +126,7 @@ public class AlunoService {
             
         return alunoVelho;
     }
+    
     public static Aluno verificarAlunoMaisNovo() {
          
         if(alunos.isEmpty()) {
@@ -142,7 +143,8 @@ public class AlunoService {
             
         return alunoNovo;
     }
-        
+    
+    
         
  
     

@@ -360,7 +360,7 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
      
         try {
-            if(AlunoController.maisNovo() != null)  {
+            if(AlunoController.maisVelho() != null)  {
             Aluno aluno = AlunoController.maisVelho();
             AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(aluno.getMatricula());
             String mensagem = "ALUNO MAIS VELHO: \n" +
