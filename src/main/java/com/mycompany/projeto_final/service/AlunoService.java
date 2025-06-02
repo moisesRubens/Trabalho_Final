@@ -165,6 +165,7 @@ public class AlunoService {
             
         return alunoVelho;
     }
+    
     public static Aluno verificarAlunoMaisNovo() {
          
         if(alunos.isEmpty()) {
@@ -181,7 +182,26 @@ public class AlunoService {
             
         return alunoNovo;
     }
+    
+    public static boolean addAlunoNaPosicao(Aluno aluno,int posicao) throws IllegalArgumentException {
+        aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
+        int idade = aluno.getIdade();
         
+        if(!verificarCpf(aluno.getCpf()) || !verificarIdade(aluno.getIdade()) 
+          || !verificarNome(aluno.getNome()) || !verificarTelefone(aluno.getTelefone())
+          || !verificarMatricula(aluno.getMatricula()) || idade == -1) {
+            throw new IllegalArgumentException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
+        }
+       
+        if(!existeAluno(aluno.getMatricula())) {
+            alunos.add(posicao,aluno);
+            
+            return true;
+        }
+        return false;
+    }
+    
+    
         
  
     

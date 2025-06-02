@@ -155,7 +155,14 @@
                                       </Group>
                                       <Group type="102" alignment="1" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Component id="textFieldRemoverALuno" min="-2" pref="113" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="textFieldRemoverALuno" alignment="1" min="-2" pref="113" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="botaoAdicionarNaPosição" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="textFieldAdicionarNaPosição" min="-2" pref="105" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                               </Group>
@@ -166,7 +173,7 @@
                           <Component id="labelMatricula" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="textMatricula" min="-2" pref="100" max="-2" attributes="0"/>
-                          <EmptySpace pref="133" max="32767" attributes="0"/>
+                          <EmptySpace pref="130" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="buttonRemoverAluno" alignment="0" min="-2" pref="111" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
@@ -202,6 +209,8 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelCpf" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="formattedTextFieldCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="botaoAdicionarNaPosição" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="textFieldAdicionarNaPosição" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -213,7 +222,7 @@
                       <Component id="labelTelefone" min="-2" max="-2" attributes="0"/>
                       <Component id="formattedTextFieldTelefone" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="71" max="32767" attributes="0"/>
+                  <EmptySpace pref="70" max="32767" attributes="0"/>
                   <Component id="botaoAlunoMaisVelho" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -365,6 +374,19 @@
             <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldRemoverALunoFocusGained"/>
             <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="textFieldRemoverALunoFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldRemoverALunoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="botaoAdicionarNaPosi&#xe7;&#xe3;o">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="ADICIONAR NA P&#xba;:"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoAdicionarNaPosi&#xe7;&#xe3;oActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="textFieldAdicionarNaPosi&#xe7;&#xe3;o">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldAdicionarNaPosi&#xe7;&#xe3;oActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

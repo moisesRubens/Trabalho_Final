@@ -8,7 +8,7 @@ public class RemocaoAlunoDAO implements AlunoDAO {
     @Override
     public List removerAluno(List alunos, Aluno a) {
         try {
-            
+           
         } catch(RuntimeException e) {
             e.printStackTrace();
         } finally { 
