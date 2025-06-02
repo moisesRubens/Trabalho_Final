@@ -568,10 +568,20 @@ public class JanelaInicial extends javax.swing.JFrame {
         try {
             String StrPosicao = textFieldAdicionarNaPosição.getText().trim();
             if(StrPosicao ==null || StrPosicao.isEmpty()) {
-                JOptionPane.showMessageDialog(this,"A posição esta vazia,por favor insira uma posição");
+                JOptionPane.showMessageDialog(this,"A posição esta vazia,por favor insira uma posição","Erro",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if(!StrPosicao.matches("\\d+")) {
+                JOptionPane.showMessageDialog(this,"É necessario o campo ser composto somente por numeros.","Erro",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             int posicao = Integer.parseInt(StrPosicao);
+            
+            if(posicao > AlunoController.quantidadeTotalDeAlunos()) {
+                JOptionPane.showMessageDialog(this,"A posição é maior que o tamanho da lista","Erro",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            
             String dataDeNascimento = forformattedTextFieldDataDeNascimento.getText();
             DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
