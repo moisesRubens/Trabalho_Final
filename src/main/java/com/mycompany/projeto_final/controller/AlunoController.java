@@ -40,4 +40,14 @@ public class AlunoController {
     public static Aluno maisNovo() {
         return AlunoService.verificarAlunoMaisNovo(); 
     }
+    
+    public static void cadastrarAlunoNaPosicao(AlunoRequestDTO dadosAluno,int posicao) throws IllegalArgumentException, AlunoJaCadastradoException {
+        Aluno aluno = new Aluno(dadosAluno.nome().toUpperCase(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
+                                dadosAluno.telefone(), dadosAluno.cpf());
+        
+        if(!AlunoService.addAlunoNaPosicao(aluno,posicao)) {
+            throw new AlunoJaCadastradoException("ERRO. ALUNO JÁ EXISTENTE");
+        }
+    }
+    
 }
