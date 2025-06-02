@@ -179,6 +179,11 @@ public class JanelaInicial extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        forformattedTextFieldDataDeNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                forformattedTextFieldDataDeNascimentoFocusGained(evt);
+            }
+        });
         forformattedTextFieldDataDeNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 forformattedTextFieldDataDeNascimentoActionPerformed(evt);
@@ -220,6 +225,14 @@ public class JanelaInicial extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        formattedTextFieldCpf.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formattedTextFieldCpfFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formattedTextFieldCpfFocusLost(evt);
+            }
+        });
         formattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 formattedTextFieldCpfActionPerformed(evt);
@@ -373,9 +386,9 @@ public class JanelaInicial extends javax.swing.JFrame {
                                                         formattedTextFieldTelefone.getText());
             AlunoController.cadastrarAluno(dadosAluno);
             String mensagem = "ALUNO CADASTRADO";
-            JOptionPane.showMessageDialog(this, mensagem, "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CADASTRAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } 
     }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
@@ -397,9 +410,9 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "DATA DE NASCIMENTO: " + dataDeNascimento.toString() + "\n" + 
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
-            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_consultarAlunoActionPerformed
 
@@ -426,10 +439,10 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"MATRICULA INEXISTENTE","INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
             }
         } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
          
         // TODO add your handling code here:
@@ -450,10 +463,10 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","Informativo",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
             }
         } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERRO AO CONSULTAR ALUNO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
 // TODO add your handling code here:
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
@@ -469,9 +482,9 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
         try {
             AlunoController.removerAluno(textFieldRemoverALuno.getText());
-            JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "RESULTADO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_buttonRemoverAlunoActionPerformed
 
@@ -511,6 +524,18 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void textFieldRemoverALunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRemoverALunoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldRemoverALunoActionPerformed
+
+    private void forformattedTextFieldDataDeNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_forformattedTextFieldDataDeNascimentoFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_forformattedTextFieldDataDeNascimentoFocusGained
+
+    private void formattedTextFieldCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpfFocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldCpfFocusGained
+
+    private void formattedTextFieldCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpfFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldCpfFocusLost
 
     /**
      * @param args the command line arguments
