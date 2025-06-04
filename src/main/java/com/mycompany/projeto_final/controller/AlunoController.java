@@ -7,6 +7,10 @@ import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTable;
 
 public class AlunoController {
     
@@ -48,6 +52,34 @@ public class AlunoController {
         if(!AlunoService.addAlunoNaPosicao(aluno,posicao)) {
             throw new AlunoJaCadastradoException("ERRO. ALUNO JÁ EXISTENTE");
         }
+    }
+    
+    public static void popularTabelaAlunos(JTable tabelaAlunos) {
+        List<Aluno> listaDeAlunos = AlunoService.todosAlunos();
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("Matrícula");
+        model.addColumn("Nome");
+        model.addColumn("Data de Nascimento");
+        model.addColumn("CPF");
+        model.addColumn("Telefone");
+        model.addColumn("Idade");
+
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        if (listaDeAlunos != null) {
+            for (Aluno aluno : listaDeAlunos) {
+                model.addRow(new Object[]{
+                    aluno.getMatricula(),
+                    aluno.getNome(),
+                    aluno.getDataNascimento().format(dTF),
+                    aluno.getCpf(),
+                    aluno.getTelefone(),
+                    aluno.getIdade()
+                });
+            }
+        }
+        tabelaAlunos.setModel(model);
     }
     
 }
