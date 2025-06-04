@@ -24,16 +24,20 @@ public class AlunoService {
     }
     
     public static void salvarAlunosEmCSV() {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(CSV_FILE_NAME))) {
-            bw.write("Matricula,Nome,DataNascimento,CPF,Telefone,Idade");
-            bw.newLine();
+        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME))) {
+            arquivo.write("Matricula,Nome,DataNascimento,CPF,Telefone,Idade");
+            arquivo.newLine();
             
             for(Aluno aluno: alunos) {
-                String linha = String.join(",",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
+                 String linha = String.join(",",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
                 ,String.valueOf(aluno.getIdade()));
+                 arquivo.write(linha);
+                 arquivo.newLine();
             }
+            
         } catch(IOException e) {
             
+            e.printStackTrace();
           
         }
     }
