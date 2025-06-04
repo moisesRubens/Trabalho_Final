@@ -5,13 +5,42 @@ import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeFormatter;
+import javax.swing.JOptionPane;
 
 public class AlunoService {
+    
     private static List<Aluno> alunos = new ArrayList<>();
+    private static final String CSV_FILE_NAME = "ListagemAlunos.txt";
+    private static final DateTimeFormatter CSV_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    
+    public static List todosAlunos() {
+        return alunos;
+    }
+    
+    public static void salvarAlunosEmCSV() {
+        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME))) {
+            arquivo.write("Matricula,Nome,DataNascimento,CPF,Telefone,Idade");
+            arquivo.newLine();
+            
+            for(Aluno aluno: alunos) {
+                 String linha = String.join(",",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
+                ,String.valueOf(aluno.getIdade()));
+                 arquivo.write(linha);
+                 arquivo.newLine();
+            }
+            
+        } catch(IOException e) {
+            
+            e.printStackTrace();
+          
+        }
+    }
     
     public static int getSize() {
         return alunos.size();
@@ -114,6 +143,7 @@ public class AlunoService {
        
         if(!existeAluno(aluno.getMatricula())) {
             alunos.add(aluno);
+            salvarAlunosEmCSV();
             return true;
         }
         return false;
@@ -130,6 +160,7 @@ public class AlunoService {
             Aluno aluno = (Aluno)iterator.next();
             if(aluno.getMatricula().equals(matricula)) {
                 iterator.remove();
+                salvarAlunosEmCSV();
                 return true;
             }
         }
@@ -200,9 +231,4 @@ public class AlunoService {
         }
         return false;
     }
-    
-    
-        
- 
-    
 }

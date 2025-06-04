@@ -25,6 +25,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.plaf.OptionPaneUI;
 import javax.swing.text.MaskFormatter;
 
+
 public class JanelaInicial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
@@ -72,6 +73,11 @@ public class JanelaInicial extends javax.swing.JFrame {
         textFieldRemoverALuno = new javax.swing.JTextField();
         botaoAdicionarNaPosição = new javax.swing.JButton();
         textFieldAdicionarNaPosição = new javax.swing.JTextField();
+        botaoTabelaAlunos = new javax.swing.JButton();
+        painelTabela = new javax.swing.JPanel();
+        botaoVoltarDaTabela = new javax.swing.JButton();
+        scrollPaneDaTabela = new javax.swing.JScrollPane();
+        tabelaAlunos = new javax.swing.JTable();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -276,6 +282,13 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
+        botaoTabelaAlunos.setText("TABELA ALUNOS");
+        botaoTabelaAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoTabelaAlunosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelAlunoLayout = new javax.swing.GroupLayout(painelAluno);
         painelAluno.setLayout(painelAlunoLayout);
         painelAlunoLayout.setHorizontalGroup(
@@ -283,50 +296,47 @@ public class JanelaInicial extends javax.swing.JFrame {
             .addGroup(painelAlunoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoAlunoMaisNovo)
-                            .addComponent(botaoAlunoMaisVelho))
-                        .addGap(33, 33, 33))
                     .addGroup(painelAlunoLayout.createSequentialGroup()
-                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelAlunoLayout.createSequentialGroup()
-                                .addComponent(labelDataDeNascimento)
+                        .addComponent(labelDataDeNascimento)
+                        .addGap(18, 18, 18)
+                        .addComponent(forformattedTextFieldDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelAlunoLayout.createSequentialGroup()
+                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelCpf)
                                 .addGap(18, 18, 18)
-                                .addComponent(forformattedTextFieldDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(formattedTextFieldCpf))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelTelefone)
+                                .addGap(18, 18, 18)
+                                .addComponent(formattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(labelNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(textNome))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
+                                .addComponent(voltarDeAluno)
+                                .addGap(18, 18, 18)
+                                .addComponent(cadastrarAluno)))
+                        .addGap(18, 18, 18)
+                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
+                                        .addComponent(botaoAdicionarNaPosição)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textFieldAdicionarNaPosição, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(painelAlunoLayout.createSequentialGroup()
                                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(labelCpf)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(formattedTextFieldCpf))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(labelTelefone)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(formattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(labelNome)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textNome))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(voltarDeAluno)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cadastrarAluno)))
-                                .addGap(18, 18, 18)
+                                    .addComponent(botaoTabelaAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(totalAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(totalAlunos)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                                                .addComponent(botaoAdicionarNaPosição)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textFieldAdicionarNaPosição, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addContainerGap())
+                                    .addComponent(botaoAlunoMaisNovo)
+                                    .addComponent(botaoAlunoMaisVelho))
+                                .addGap(27, 27, 27))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
                         .addComponent(labelMatricula)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -337,8 +347,8 @@ public class JanelaInicial extends javax.swing.JFrame {
                             .addGroup(painelAlunoLayout.createSequentialGroup()
                                 .addComponent(consultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap())))
+                                .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         painelAlunoLayout.setVerticalGroup(
             painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -370,7 +380,9 @@ public class JanelaInicial extends javax.swing.JFrame {
                     .addComponent(labelTelefone)
                     .addComponent(formattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(botaoAlunoMaisVelho)
+                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoAlunoMaisVelho)
+                    .addComponent(botaoTabelaAlunos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarDeAluno)
@@ -381,6 +393,50 @@ public class JanelaInicial extends javax.swing.JFrame {
         );
 
         getContentPane().add(painelAluno, "painelAluno");
+
+        botaoVoltarDaTabela.setText("VOLTAR");
+        botaoVoltarDaTabela.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoVoltarDaTabelaActionPerformed(evt);
+            }
+        });
+
+        tabelaAlunos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scrollPaneDaTabela.setViewportView(tabelaAlunos);
+
+        javax.swing.GroupLayout painelTabelaLayout = new javax.swing.GroupLayout(painelTabela);
+        painelTabela.setLayout(painelTabelaLayout);
+        painelTabelaLayout.setHorizontalGroup(
+            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelTabelaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(botaoVoltarDaTabela)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(painelTabelaLayout.createSequentialGroup()
+                .addComponent(scrollPaneDaTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        painelTabelaLayout.setVerticalGroup(
+            painelTabelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelTabelaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(scrollPaneDaTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(botaoVoltarDaTabela)
+                .addGap(27, 27, 27))
+        );
+
+        getContentPane().add(painelTabela, "painelTabela");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -598,6 +654,21 @@ public class JanelaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_botaoAdicionarNaPosiçãoActionPerformed
 
+    private void botaoTabelaAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTabelaAlunosActionPerformed
+        
+        AlunoController.popularTabelaAlunos(tabelaAlunos);
+        
+        CardLayout a = (CardLayout) getContentPane().getLayout();
+        a.show(getContentPane(),"painelTabela");
+// TODO add your handling code here:
+    }//GEN-LAST:event_botaoTabelaAlunosActionPerformed
+
+    private void botaoVoltarDaTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarDaTabelaActionPerformed
+        CardLayout a = (CardLayout) getContentPane().getLayout();
+        a.show(getContentPane(),"painelAluno");
+// TODO add your handling code here:
+    }//GEN-LAST:event_botaoVoltarDaTabelaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -628,6 +699,8 @@ public class JanelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton botaoAdicionarNaPosição;
     private javax.swing.JButton botaoAlunoMaisNovo;
     private javax.swing.JButton botaoAlunoMaisVelho;
+    private javax.swing.JButton botaoTabelaAlunos;
+    private javax.swing.JButton botaoVoltarDaTabela;
     private javax.swing.JButton buttonRemoverAluno;
     private javax.swing.JButton cadastrarAluno;
     private javax.swing.JButton consultarAluno;
@@ -642,6 +715,9 @@ public class JanelaInicial extends javax.swing.JFrame {
     private javax.swing.JLabel labelTelefone;
     private javax.swing.JPanel painelAluno;
     private javax.swing.JPanel painelPrincipal;
+    private javax.swing.JPanel painelTabela;
+    private javax.swing.JScrollPane scrollPaneDaTabela;
+    private javax.swing.JTable tabelaAlunos;
     private javax.swing.JTextField textConsultarAluno;
     private javax.swing.JTextField textFieldAdicionarNaPosição;
     private javax.swing.JTextField textFieldRemoverALuno;
