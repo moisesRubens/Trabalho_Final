@@ -1,5 +1,6 @@
 package com.mycompany.projeto_final.service;
 
+import com.mycompany.projeto_final.dao.AlunoDAO;
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
@@ -23,22 +24,14 @@ public class AlunoService {
         return alunos;
     }
     
-    public static void salvarAlunosEmCSV() {
-        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME))) {
-            arquivo.write("Matricula,Nome,DataNascimento,CPF,Telefone,Idade");
+    public static void salvarAlunosEmCSV(Aluno aluno) {
+        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME, true))) {
+            String linha = String.join(", ",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
+            ,String.valueOf(aluno.getIdade()));
+            arquivo.write(linha);
             arquivo.newLine();
-            
-            for(Aluno aluno: alunos) {
-                 String linha = String.join(",",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
-                ,String.valueOf(aluno.getIdade()));
-                 arquivo.write(linha);
-                 arquivo.newLine();
-            }
-            
         } catch(IOException e) {
-            
             e.printStackTrace();
-          
         }
     }
     
@@ -143,7 +136,8 @@ public class AlunoService {
        
         if(!existeAluno(aluno.getMatricula())) {
             alunos.add(aluno);
-            salvarAlunosEmCSV();
+            salvarAlunosEmCSV(aluno);
+            AlunoDAO.adicionarAluno(aluno);
             return true;
         }
         return false;
@@ -160,7 +154,7 @@ public class AlunoService {
             Aluno aluno = (Aluno)iterator.next();
             if(aluno.getMatricula().equals(matricula)) {
                 iterator.remove();
-                salvarAlunosEmCSV();
+                salvarAlunosEmCSV(aluno);
                 return true;
             }
         }

@@ -1,12 +1,27 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projeto_final.dao;
 
 import com.mycompany.projeto_final.domain.Aluno;
-import java.util.List;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 
-public interface AlunoDAO {
-    public List removerAluno(List alunos, Aluno a);
+/**
+ *
+ * @author moise
+ */
+public class AlunoDAO {
+    public static void adicionarAluno(Aluno aluno) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+        EntityManager em = emf.createEntityManager();
+
+        em.getTransaction().begin();
+        em.persist(aluno);
+        em.getTransaction().commit();
+        em.close();
+        emf.close();
+    }
 }
