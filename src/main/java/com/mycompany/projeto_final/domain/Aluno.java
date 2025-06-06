@@ -1,13 +1,23 @@
 package com.mycompany.projeto_final.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.time.LocalDate;
 
+@Entity
 public class Aluno {
-    private String nome;
+    @Id
     private String matricula;
+    @Column(nullable = false)
+    private String nome;
+    @Column(nullable = false)
     private LocalDate dataNascimento;
+    @Column(nullable = false)
     private String telefone;
+    @Column(nullable = false, unique = true)
     private String cpf;
+    @Column(nullable = false)
     private int idade;
 
     public Aluno(String nome, String matricula, LocalDate dataNascimento, String telefone, String cpf) {
