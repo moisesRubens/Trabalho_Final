@@ -8,13 +8,15 @@ import com.mycompany.projeto_final.domain.Aluno;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.List;
 
 /**
  *
  * @author moise
  */
 public class AlunoDAO {
-    public static void adicionarAluno(Aluno aluno) {
+    public static void adicionarAluno(Aluno aluno) throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
         EntityManager em = emf.createEntityManager();
 

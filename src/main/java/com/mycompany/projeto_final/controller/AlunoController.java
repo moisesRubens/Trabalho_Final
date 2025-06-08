@@ -7,6 +7,7 @@ import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -14,7 +15,7 @@ import javax.swing.JTable;
 
 public class AlunoController {
     
-    public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws IllegalArgumentException, AlunoJaCadastradoException {
+    public static void cadastrarAluno(AlunoRequestDTO dadosAluno) throws IllegalArgumentException, Exception {
         Aluno aluno = new Aluno(dadosAluno.nome().toUpperCase(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf());
         
@@ -55,7 +56,7 @@ public class AlunoController {
     }
     
     public static void popularTabelaAlunos(JTable tabelaAlunos) {
-        List<Aluno> listaDeAlunos = AlunoService.todosAlunos();
+        List<Aluno> listaDeAlunos = AlunoService.alunos;
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Matrícula");
