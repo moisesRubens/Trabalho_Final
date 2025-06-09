@@ -12,6 +12,7 @@ import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -467,7 +468,11 @@ public class JanelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } 
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "ALUNO JÁ EXISTENTE", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
     }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed

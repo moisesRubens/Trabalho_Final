@@ -11,18 +11,15 @@ import java.util.List;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
 
 public class AlunoService {
     
-    private static List<Aluno> alunos = new ArrayList<>();
+    public static List<Aluno> alunos = new ArrayList<>();
     private static final String CSV_FILE_NAME = "ListagemAlunos.txt";
     private static final DateTimeFormatter CSV_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    
-    public static List todosAlunos() {
-        return alunos;
-    }
     
     public static void salvarAlunosEmCSV(Aluno aluno) {
         try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME, true))) {
@@ -124,7 +121,7 @@ public class AlunoService {
         return idade;
     }
     
-    public static boolean addAluno(Aluno aluno) throws IllegalArgumentException {
+    public static boolean addAluno(Aluno aluno) throws IllegalArgumentException, Exception {
         aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
         int idade = aluno.getIdade();
         
