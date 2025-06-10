@@ -151,13 +151,8 @@ public class AlunoService {
         if(matricula.equals("MATRICULA")) {
             throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
-        
-        for(Aluno aluno : alunos) {
-            if(aluno.getMatricula().equals(matricula)) {
-                return aluno;
-            }
-        }
-        throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+        Aluno aluno = AlunoDAO.getAluno(matricula);
+        return aluno;
     } 
 
     public static Aluno verificarAlunoMaisVelho() {
