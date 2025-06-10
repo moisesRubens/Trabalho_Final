@@ -8,6 +8,7 @@ import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,7 @@ public class AlunoController {
         }
     }
     
-    public static void removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
+    public static void removerAluno(String matricula) throws IllegalArgumentException, Exception {
         AlunoService.removerAluno(matricula);
     }
     
@@ -38,8 +39,14 @@ public class AlunoController {
         return AlunoService.getSize();
     }
     
-    public static Aluno maisVelho() {
-        return AlunoService.verificarAlunoMaisVelho(); 
+    public static AlunoResponseDTO maisVelho() {
+        Aluno aluno = AlunoService.verificarAlunoMaisVelho(); 
+        
+        if(aluno == null) {
+            return null;
+        }
+        
+        return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(), aluno.getDataNascimento(), aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());
     }
    
     public static Aluno maisNovo() {

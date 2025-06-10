@@ -8,5 +8,5 @@ import com.mycompany.projeto_final.domain.Aluno;
 import java.util.List;
 
 public interface AlunoDAOInterface {
-    public List removerAluno(List alunos, Aluno a);
+    public List removerAluno(List alunos, Aluno a) throws Exception;
 }

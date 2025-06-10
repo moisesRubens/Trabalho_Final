@@ -532,11 +532,8 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
 
     private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
-     
-        try {
-            if(AlunoController.maisVelho() != null)  {
-            Aluno aluno = AlunoController.maisVelho();
-            AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(aluno.getMatricula());
+        if(AlunoController.maisVelho() != null)  {
+            AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
             String mensagem = "ALUNO MAIS VELHO: \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
                               "NOME: " + dadosAluno.nome() + "\n" + 
@@ -545,13 +542,9 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-            } else {
+        } else {
                 JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
-            }
-        } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
-// TODO add your handling code here:
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
 
     private void formattedTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefoneActionPerformed
@@ -568,6 +561,8 @@ public class JanelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e) {
+            
         }
     }//GEN-LAST:event_buttonRemoverAlunoActionPerformed
 
