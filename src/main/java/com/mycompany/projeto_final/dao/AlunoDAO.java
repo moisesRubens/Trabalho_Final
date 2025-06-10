@@ -5,6 +5,7 @@
 package com.mycompany.projeto_final.dao;
 
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -56,5 +57,21 @@ public class AlunoDAO {
         emf.close();
 
         return alunos;
+    }
+    
+    public static Aluno getAluno(String matricula) throws AlunoNaoEncontradoException {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+        EntityManager em = emf.createEntityManager();
+        try {
+            Aluno aluno = em.createQuery("SELECT a FROM Aluno a WHERE a.matricula = :matricula", Aluno.class)
+                            .setParameter("matricula", matricula)
+                            .getSingleResult();
+            return aluno;
+        } catch(Exception e) {
+            throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
 }
