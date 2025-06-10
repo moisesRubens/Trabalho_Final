@@ -1,6 +1,7 @@
 package com.mycompany.projeto_final.service;
 
 import com.mycompany.projeto_final.dao.AlunoDAO;
+import com.mycompany.projeto_final.dao.RemocaoAlunoDAO;
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import java.time.LocalDate;
@@ -18,19 +19,6 @@ import javax.swing.JOptionPane;
 public class AlunoService {
     
     public static List<Aluno> alunos = new ArrayList<>();
-    private static final String CSV_FILE_NAME = "ListagemAlunos.txt";
-    private static final DateTimeFormatter CSV_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    
-    public static void salvarAlunosEmCSV(Aluno aluno) {
-        try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME, true))) {
-            String linha = String.join(", ",aluno.getMatricula(),aluno.getNome(),aluno.getDataNascimento().format(CSV_DATE_FORMATTER),aluno.getCpf(),aluno.getTelefone()
-            ,String.valueOf(aluno.getIdade()));
-            arquivo.write(linha);
-            arquivo.newLine();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
     
     public static int getSize() {
         return alunos.size();
@@ -132,30 +120,31 @@ public class AlunoService {
         }
        
         if(!existeAluno(aluno.getMatricula())) {
-            alunos.add(aluno);
-            salvarAlunosEmCSV(aluno);
             AlunoDAO.adicionarAluno(aluno);
             return true;
         }
         return false;
     }
     
-    public static boolean removerAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
-        Iterator iterator = alunos.iterator();
-        
+    public static void removerAluno(String matricula) throws IllegalArgumentException, Exception {
         if(matricula.equals("MATRICULA")) {
             throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
         
-        while(iterator.hasNext()) {
-            Aluno aluno = (Aluno)iterator.next();
-            if(aluno.getMatricula().equals(matricula)) {
-                iterator.remove();
-                salvarAlunosEmCSV(aluno);
-                return true;
+        List<Aluno> alunos = AlunoDAO.getAllAlunos();
+        Aluno aluno = null;
+        for(Aluno a : alunos) {
+            if(a.getMatricula().equals(matricula)) {
+                aluno = a;
+                break;
             }
         }
-        throw new AlunoNaoEncontradoException("ERRO AO REMOVER. MATRÍCULA INEXISTENTE");
+        if(aluno == null) {
+            throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+        }
+        RemocaoAlunoDAO rAD = new RemocaoAlunoDAO();
+        rAD.removerAluno(alunos, aluno);
+        RemocaoAlunoDAO.atualizarArquivoCSV(alunos);
     }
     
     public static Aluno getAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
@@ -171,22 +160,25 @@ public class AlunoService {
         throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
     } 
 
-    public static Aluno verificarAlunoMaisVelho(){
-         
-        if(alunos.isEmpty()) {
-             return null;
-         }
-        Aluno alunoVelho = alunos.getFirst();
-        for(int i =1;i <alunos.size();i++) {
-            Aluno atual = alunos.get(i);
-            
-            if(atual.getIdade() >alunoVelho.getIdade()) {
-                alunoVelho = atual;
-            }
-        }
-            
-        return alunoVelho;
+    public static Aluno verificarAlunoMaisVelho() {
+    List<Aluno> alunos = AlunoDAO.getAllAlunos();
+
+    if (alunos == null || alunos.isEmpty()) {
+        return null;
     }
+
+    Aluno alunoVelho = alunos.get(0);
+
+    for (int i = 1; i < alunos.size(); i++) {
+        Aluno atual = alunos.get(i);
+        if (atual.getIdade() > alunoVelho.getIdade()) {
+            alunoVelho = atual;
+        }
+    }
+
+    return alunoVelho;
+}
+
     
     public static Aluno verificarAlunoMaisNovo() {
          

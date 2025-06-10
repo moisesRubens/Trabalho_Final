@@ -20,6 +20,10 @@ public class Aluno {
     @Column(nullable = false)
     private int idade;
 
+    public Aluno() {
+        
+    }
+    
     public Aluno(String nome, String matricula, LocalDate dataNascimento, String telefone, String cpf) {
         this.nome = nome;
         this.matricula = matricula;
