@@ -39,18 +39,20 @@ public class AlunoController {
         return AlunoService.getSize();
     }
     
-    public static AlunoResponseDTO maisVelho() {
+    public static AlunoResponseDTO maisVelho() throws AlunoNaoEncontradoException {
         Aluno aluno = AlunoService.verificarAlunoMaisVelho(); 
-        
-        if(aluno == null) {
-            return null;
-        }
-        
-        return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(), aluno.getDataNascimento(), aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());
+       
+        return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),
+                                    aluno.getDataNascimento(), aluno.getCpf(),
+                                    aluno.getTelefone(), aluno.getIdade());
     }
    
-    public static Aluno maisNovo() {
-        return AlunoService.verificarAlunoMaisNovo(); 
+    public static AlunoResponseDTO maisNovo() throws AlunoNaoEncontradoException{
+        Aluno aluno = AlunoService.verificarAlunoMaisNovo();
+        
+        return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),
+                aluno.getDataNascimento(), aluno.getCpf(), aluno.getTelefone(),
+                aluno.getIdade());
     }
     
     public static void cadastrarAlunoNaPosicao(AlunoRequestDTO dadosAluno,int posicao) throws IllegalArgumentException, AlunoJaCadastradoException {
