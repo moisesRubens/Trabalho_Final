@@ -47,16 +47,21 @@ public class AlunoDAO {
         salvarAlunosEmCSV(aluno);
     }
     
-    public static List<Aluno> getAllAlunos() {
+    public static List<Aluno> getAllAlunos() throws AlunoNaoEncontradoException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
         EntityManager em = emf.createEntityManager();
-
-        List<Aluno> alunos = em.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
-
-        em.close();
-        emf.close();
-
-        return alunos;
+        try {
+            List<Aluno> alunos = em.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
+            if (alunos.isEmpty()) {
+                throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+            }
+            return alunos;
+        } catch(Exception e) {
+            throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+        } finally {
+            em.close();
+            emf.close();
+        }
     }
     
     public static Aluno getAluno(String matricula) throws AlunoNaoEncontradoException {

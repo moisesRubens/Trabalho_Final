@@ -155,12 +155,8 @@ public class AlunoService {
         return aluno;
     } 
 
-    public static Aluno verificarAlunoMaisVelho() {
+    public static Aluno verificarAlunoMaisVelho() throws AlunoNaoEncontradoException {
     List<Aluno> alunos = AlunoDAO.getAllAlunos();
-
-    if (alunos == null || alunos.isEmpty()) {
-        return null;
-    }
 
     Aluno alunoVelho = alunos.get(0);
 
@@ -175,21 +171,18 @@ public class AlunoService {
 }
 
     
-    public static Aluno verificarAlunoMaisNovo() {
-         
-        if(alunos.isEmpty()) {
-             return null;
-         }
-        Aluno alunoNovo = alunos.getFirst();
-        for(int i =1;i <alunos.size();i++) {
-            Aluno atual = alunos.get(i);
-            
-            if(atual.getIdade() < alunoNovo.getIdade()) {
-                alunoNovo = atual;
+    public static Aluno verificarAlunoMaisNovo() throws AlunoNaoEncontradoException {
+        List<Aluno> alunos = AlunoDAO.getAllAlunos();
+        
+        Aluno alunoMaisNovo = alunos.get(0);
+        Aluno atual;
+        for(int i = 1; i<alunos.size(); i++) {
+            atual = alunos.get(i);
+            if (atual.getIdade() < alunoMaisNovo.getIdade()) {
+                alunoMaisNovo = atual;
             }
         }
-            
-        return alunoNovo;
+        return alunoMaisNovo;
     }
     
     public static boolean addAlunoNaPosicao(Aluno aluno,int posicao) throws IllegalArgumentException {

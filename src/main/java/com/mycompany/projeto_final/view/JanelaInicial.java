@@ -509,10 +509,8 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_forformattedTextFieldDataDeNascimentoActionPerformed
 
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
-         try {
-            if(AlunoController.maisNovo() != null)  {
-            Aluno aluno = AlunoController.maisNovo();
-            AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(aluno.getMatricula());
+        try {
+            AlunoResponseDTO dadosAluno = AlunoController.maisNovo();
             String mensagem = "ALUNO MAIS NOVO: \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
                               "NOME: " + dadosAluno.nome() + "\n" + 
@@ -521,19 +519,15 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(this,"MATRICULA INEXISTENTE","INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
-            }
         } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         }
-         
-        // TODO add your handling code here:
     }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
 
     private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
-        if(AlunoController.maisVelho() != null)  {
+        try {
             AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
+        
             String mensagem = "ALUNO MAIS VELHO: \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
                               "NOME: " + dadosAluno.nome() + "\n" + 
@@ -542,8 +536,8 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-        } else {
-                JOptionPane.showMessageDialog(this,"Não existe nenhuma matricula","INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+        } catch(AlunoNaoEncontradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
 
