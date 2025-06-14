@@ -48,109 +48,110 @@ public class JanelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         painelPrincipal = new javax.swing.JPanel();
-        Aluno = new javax.swing.JButton();
+        jButtonConsultarAluno = new javax.swing.JButton();
         tituloPrincipal = new javax.swing.JLabel();
+        jButtonCadastrarAluno = new javax.swing.JButton();
+        jButtonSair = new javax.swing.JButton();
         painelAluno = new javax.swing.JPanel();
         voltarDeAluno = new javax.swing.JButton();
-        labelMatricula = new javax.swing.JLabel();
-        labelNome = new javax.swing.JLabel();
-        labelCpf = new javax.swing.JLabel();
-        labelDataDeNascimento = new javax.swing.JLabel();
-        labelTelefone = new javax.swing.JLabel();
-        textMatricula = new javax.swing.JTextField();
-        textNome = new javax.swing.JTextField();
-        cadastrarAluno = new javax.swing.JButton();
         textConsultarAluno = new javax.swing.JTextField();
         consultarAluno = new javax.swing.JButton();
         totalAlunos = new javax.swing.JButton();
-        forformattedTextFieldDataDeNascimento = new javax.swing.JFormattedTextField();
         botaoAlunoMaisVelho = new javax.swing.JButton();
         botaoAlunoMaisNovo = new javax.swing.JButton();
-        formattedTextFieldTelefone = new javax.swing.JFormattedTextField();
-        formattedTextFieldCpf = new javax.swing.JFormattedTextField();
         buttonRemoverAluno = new javax.swing.JButton();
         textFieldRemoverALuno = new javax.swing.JTextField();
-        botaoAdicionarNaPosição = new javax.swing.JButton();
-        textFieldAdicionarNaPosição = new javax.swing.JTextField();
         botaoTabelaAlunos = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         painelTabela = new javax.swing.JPanel();
         botaoVoltarDaTabela = new javax.swing.JButton();
         scrollPaneDaTabela = new javax.swing.JScrollPane();
         tabelaAlunos = new javax.swing.JTable();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
+        painelCadastro = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        textMatricula1 = new javax.swing.JTextField();
+        cadastrarAluno1 = new javax.swing.JButton();
+        textNome1 = new javax.swing.JTextField();
+        jLabelMatricula = new javax.swing.JLabel();
+        jlabelNome = new javax.swing.JLabel();
+        formattedTextFieldCpf1 = new javax.swing.JFormattedTextField();
+        jlabelNome1 = new javax.swing.JLabel();
+        formattedTextFieldDataDeNascimento1 = new javax.swing.JFormattedTextField();
+        jlabelNome2 = new javax.swing.JLabel();
+        formattedTextFieldTelefone1 = new javax.swing.JFormattedTextField();
+        jlabelNome3 = new javax.swing.JLabel();
+        botaoAdicionarNaPosição1 = new javax.swing.JButton();
+        textFieldAdicionarNaPosição1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new java.awt.CardLayout());
 
-        Aluno.setText("Aluno");
-        Aluno.addActionListener(new java.awt.event.ActionListener() {
+        jButtonConsultarAluno.setText("CONSULTAR ALUNO");
+        jButtonConsultarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlunoActionPerformed(evt);
+                jButtonConsultarAlunoActionPerformed(evt);
             }
         });
 
         tituloPrincipal.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
-        tituloPrincipal.setText("Sistema de Gerenciamento de Aluno");
+        tituloPrincipal.setText("SISTEMA DE GERENCIAMENTO DE ALUNOS");
+
+        jButtonCadastrarAluno.setText("CADASTRAR ALUNO");
+        jButtonCadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCadastrarAlunoActionPerformed(evt);
+            }
+        });
+
+        jButtonSair.setText("SAIR");
+        jButtonSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSairActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelPrincipalLayout = new javax.swing.GroupLayout(painelPrincipal);
         painelPrincipal.setLayout(painelPrincipalLayout);
         painelPrincipalLayout.setHorizontalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(78, Short.MAX_VALUE)
+                .addComponent(tituloPrincipal)
+                .addGap(38, 38, 38))
             .addGroup(painelPrincipalLayout.createSequentialGroup()
                 .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(Aluno))
+                        .addContainerGap()
+                        .addComponent(jButtonSair))
                     .addGroup(painelPrincipalLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(tituloPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(122, Short.MAX_VALUE))
+                        .addGap(122, 122, 122)
+                        .addComponent(jButtonCadastrarAluno)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonConsultarAluno)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelPrincipalLayout.setVerticalGroup(
             painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelPrincipalLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(110, 110, 110)
                 .addComponent(tituloPrincipal)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(Aluno)
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addGroup(painelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonCadastrarAluno)
+                    .addComponent(jButtonConsultarAluno))
+                .addGap(62, 62, 62)
+                .addComponent(jButtonSair)
+                .addContainerGap())
         );
 
         getContentPane().add(painelPrincipal, "painelPrincipal");
 
-        voltarDeAluno.setText("Voltar");
+        voltarDeAluno.setText("VOLTAR");
         voltarDeAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarDeAlunoActionPerformed(evt);
-            }
-        });
-
-        labelMatricula.setText("MATRICULA:");
-
-        labelNome.setText("NOME:");
-
-        labelCpf.setText("CPF:");
-
-        labelDataDeNascimento.setText("DATA DE NASCIMENTO:");
-
-        labelTelefone.setText("TELEFONE:");
-
-        cadastrarAluno.setText("ADICIONAR ALUNO");
-        cadastrarAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarAlunoActionPerformed(evt);
             }
         });
 
@@ -183,22 +184,6 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
-        try {
-            forformattedTextFieldDataDeNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        forformattedTextFieldDataDeNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                forformattedTextFieldDataDeNascimentoFocusGained(evt);
-            }
-        });
-        forformattedTextFieldDataDeNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                forformattedTextFieldDataDeNascimentoActionPerformed(evt);
-            }
-        });
-
         botaoAlunoMaisVelho.setText("ALUNO MAIS VELHO");
         botaoAlunoMaisVelho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,41 +195,6 @@ public class JanelaInicial extends javax.swing.JFrame {
         botaoAlunoMaisNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoAlunoMaisNovoActionPerformed(evt);
-            }
-        });
-
-        try {
-            formattedTextFieldTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        formattedTextFieldTelefone.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formattedTextFieldTelefoneFocusGained(evt);
-            }
-        });
-        formattedTextFieldTelefone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formattedTextFieldTelefoneActionPerformed(evt);
-            }
-        });
-
-        try {
-            formattedTextFieldCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        formattedTextFieldCpf.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formattedTextFieldCpfFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                formattedTextFieldCpfFocusLost(evt);
-            }
-        });
-        formattedTextFieldCpf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                formattedTextFieldCpfActionPerformed(evt);
             }
         });
 
@@ -270,23 +220,17 @@ public class JanelaInicial extends javax.swing.JFrame {
             }
         });
 
-        botaoAdicionarNaPosição.setText("ADICIONAR NA Pº:");
-        botaoAdicionarNaPosição.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botaoAdicionarNaPosiçãoActionPerformed(evt);
-            }
-        });
-
-        textFieldAdicionarNaPosição.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldAdicionarNaPosiçãoActionPerformed(evt);
-            }
-        });
-
         botaoTabelaAlunos.setText("TABELA ALUNOS");
         botaoTabelaAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoTabelaAlunosActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("SAIR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
             }
         });
 
@@ -295,102 +239,61 @@ public class JanelaInicial extends javax.swing.JFrame {
         painelAlunoLayout.setHorizontalGroup(
             painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelAlunoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addContainerGap()
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelAlunoLayout.createSequentialGroup()
-                        .addComponent(labelDataDeNascimento)
-                        .addGap(18, 18, 18)
-                        .addComponent(forformattedTextFieldDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelAlunoLayout.createSequentialGroup()
-                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                .addComponent(labelCpf)
-                                .addGap(18, 18, 18)
-                                .addComponent(formattedTextFieldCpf))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                .addComponent(labelTelefone)
-                                .addGap(18, 18, 18)
-                                .addComponent(formattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                .addComponent(labelNome)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(textNome))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelAlunoLayout.createSequentialGroup()
-                                .addComponent(voltarDeAluno)
-                                .addGap(18, 18, 18)
-                                .addComponent(cadastrarAluno)))
-                        .addGap(18, 18, 18)
-                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                                        .addComponent(botaoAdicionarNaPosição)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(textFieldAdicionarNaPosição, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(painelAlunoLayout.createSequentialGroup()
-                                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(botaoTabelaAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(totalAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botaoAlunoMaisNovo)
-                                    .addComponent(botaoAlunoMaisVelho))
-                                .addGap(27, 27, 27))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                        .addComponent(labelMatricula)
+                                .addComponent(jButton3)
+                                .addGap(91, 91, 91))
+                            .addComponent(consultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(totalAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botaoTabelaAlunos)))
+                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelAlunoLayout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonRemoverAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(painelAlunoLayout.createSequentialGroup()
-                                .addComponent(consultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(botaoAlunoMaisVelho)
+                                    .addGroup(painelAlunoLayout.createSequentialGroup()
+                                        .addComponent(buttonRemoverAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(painelAlunoLayout.createSequentialGroup()
+                                .addComponent(botaoAlunoMaisNovo)
+                                .addGap(145, 145, 145))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(voltarDeAluno)
+                        .addContainerGap())))
         );
         painelAlunoLayout.setVerticalGroup(
             painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelAlunoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(55, 55, 55)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelMatricula)
-                    .addComponent(textMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(consultarAluno)
                     .addComponent(textConsultarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(consultarAluno))
+                    .addComponent(buttonRemoverAluno)
+                    .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(66, 66, 66)
+                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoTabelaAlunos)
+                    .addComponent(botaoAlunoMaisVelho))
                 .addGap(18, 18, 18)
                 .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNome)
-                    .addComponent(textNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textFieldRemoverALuno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonRemoverAluno))
-                .addGap(18, 18, 18)
-                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCpf)
-                    .addComponent(formattedTextFieldCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoAdicionarNaPosição)
-                    .addComponent(textFieldAdicionarNaPosição, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelDataDeNascimento)
-                    .addComponent(forformattedTextFieldDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTelefone)
-                    .addComponent(formattedTextFieldTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botaoAlunoMaisVelho)
-                    .addComponent(botaoTabelaAlunos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(voltarDeAluno)
-                    .addComponent(cadastrarAluno)
                     .addComponent(totalAlunos)
                     .addComponent(botaoAlunoMaisNovo))
-                .addGap(19, 19, 19))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addGroup(painelAlunoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(voltarDeAluno))
+                .addContainerGap())
         );
 
         getContentPane().add(painelAluno, "painelAluno");
@@ -424,7 +327,7 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addComponent(botaoVoltarDaTabela)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(painelTabelaLayout.createSequentialGroup()
-                .addComponent(scrollPaneDaTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
+                .addComponent(scrollPaneDaTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
                 .addContainerGap())
         );
         painelTabelaLayout.setVerticalGroup(
@@ -439,41 +342,215 @@ public class JanelaInicial extends javax.swing.JFrame {
 
         getContentPane().add(painelTabela, "painelTabela");
 
+        jButton1.setText("SAIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        textMatricula1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textMatricula1ActionPerformed(evt);
+            }
+        });
+
+        cadastrarAluno1.setText("ADICIONAR ALUNO");
+        cadastrarAluno1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarAluno1ActionPerformed(evt);
+            }
+        });
+
+        textNome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNome1ActionPerformed(evt);
+            }
+        });
+
+        jLabelMatricula.setText("MATRICULA");
+
+        jlabelNome.setText("NOME");
+
+        try {
+            formattedTextFieldCpf1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        formattedTextFieldCpf1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formattedTextFieldCpf1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                formattedTextFieldCpf1FocusLost(evt);
+            }
+        });
+        formattedTextFieldCpf1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTextFieldCpf1ActionPerformed(evt);
+            }
+        });
+
+        jlabelNome1.setText("CPF");
+
+        try {
+            formattedTextFieldDataDeNascimento1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        formattedTextFieldDataDeNascimento1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formattedTextFieldDataDeNascimento1FocusGained(evt);
+            }
+        });
+        formattedTextFieldDataDeNascimento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTextFieldDataDeNascimento1ActionPerformed(evt);
+            }
+        });
+
+        jlabelNome2.setText("DATA DE NASCIMENTO");
+
+        try {
+            formattedTextFieldTelefone1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        formattedTextFieldTelefone1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formattedTextFieldTelefone1FocusGained(evt);
+            }
+        });
+        formattedTextFieldTelefone1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                formattedTextFieldTelefone1ActionPerformed(evt);
+            }
+        });
+
+        jlabelNome3.setText("TELEFONE");
+
+        botaoAdicionarNaPosição1.setText("ADICIONAR NA Pº:");
+        botaoAdicionarNaPosição1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAdicionarNaPosição1ActionPerformed(evt);
+            }
+        });
+
+        textFieldAdicionarNaPosição1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textFieldAdicionarNaPosição1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("VOLTAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelCadastroLayout = new javax.swing.GroupLayout(painelCadastro);
+        painelCadastro.setLayout(painelCadastroLayout);
+        painelCadastroLayout.setHorizontalGroup(
+            painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelCadastroLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addComponent(jLabelMatricula)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textMatricula1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addComponent(jlabelNome)
+                                .addGap(30, 30, 30)
+                                .addComponent(textNome1)))
+                        .addGap(220, 220, 220)
+                        .addComponent(botaoAdicionarNaPosição1)
+                        .addGap(26, 26, 26)
+                        .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(145, 145, 145))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(cadastrarAluno1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jlabelNome1)
+                                            .addComponent(jlabelNome2))
+                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(painelCadastroLayout.createSequentialGroup()
+                                                .addGap(18, 18, 18)
+                                                .addComponent(formattedTextFieldDataDeNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                                        .addComponent(jlabelNome3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(formattedTextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+        );
+        painelCadastroLayout.setVerticalGroup(
+            painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textMatricula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelMatricula)))
+                    .addGroup(painelCadastroLayout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botaoAdicionarNaPosição1)
+                            .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabelNome))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelNome1)
+                    .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelNome2)
+                    .addComponent(formattedTextFieldDataDeNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlabelNome3)
+                    .addComponent(formattedTextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(cadastrarAluno1)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
+        getContentPane().add(painelCadastro, "panelCadastro");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlunoActionPerformed
+    private void jButtonConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarAlunoActionPerformed
         CardLayout a = (CardLayout) getContentPane().getLayout();
         a.show(getContentPane(),"painelAluno");
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AlunoActionPerformed
+    }//GEN-LAST:event_jButtonConsultarAlunoActionPerformed
 
     private void voltarDeAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarDeAlunoActionPerformed
        CardLayout a = (CardLayout) getContentPane().getLayout();
        a.show(getContentPane(),"painelPrincipal");
-        // TODO add your handling code here:
     }//GEN-LAST:event_voltarDeAlunoActionPerformed
-
-    private void cadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAlunoActionPerformed
-        try {
-            String dataDeNascimento = forformattedTextFieldDataDeNascimento.getText();
-            DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
-            
-            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
-                                                        localDate, formattedTextFieldCpf.getText(),
-                                                        formattedTextFieldTelefone.getText());
-            AlunoController.cadastrarAluno(dadosAluno);
-            String mensagem = "ALUNO CADASTRADO";
-            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "ALUNO JÁ EXISTENTE", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-        
-    }//GEN-LAST:event_cadastrarAlunoActionPerformed
 
     private void textConsultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textConsultarAlunoActionPerformed
        
@@ -503,10 +580,6 @@ public class JanelaInicial extends javax.swing.JFrame {
        Integer quantidade = AlunoController.quantidadeTotalDeAlunos();
        JOptionPane.showMessageDialog(this, quantidade.toString(), "QUANTIDADE DE ALUNOS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_totalAlunosActionPerformed
-
-    private void forformattedTextFieldDataDeNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forformattedTextFieldDataDeNascimentoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forformattedTextFieldDataDeNascimentoActionPerformed
 
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
         try {
@@ -540,14 +613,6 @@ public class JanelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
-
-    private void formattedTextFieldTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTextFieldTelefoneActionPerformed
-
-    private void formattedTextFieldCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldCpfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTextFieldCpfActionPerformed
 
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
         try {
@@ -589,34 +654,98 @@ public class JanelaInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_textFieldRemoverALunoFocusLost
 
-    private void formattedTextFieldTelefoneFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefoneFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTextFieldTelefoneFocusGained
-
     private void textFieldRemoverALunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldRemoverALunoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldRemoverALunoActionPerformed
 
-    private void forformattedTextFieldDataDeNascimentoFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_forformattedTextFieldDataDeNascimentoFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_forformattedTextFieldDataDeNascimentoFocusGained
+    private void botaoTabelaAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTabelaAlunosActionPerformed
+        
+        AlunoController.popularTabelaAlunos(tabelaAlunos);
+        
+        CardLayout a = (CardLayout) getContentPane().getLayout();
+        a.show(getContentPane(),"painelTabela");
+    }//GEN-LAST:event_botaoTabelaAlunosActionPerformed
 
-    private void formattedTextFieldCpfFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpfFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTextFieldCpfFocusGained
+    private void botaoVoltarDaTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarDaTabelaActionPerformed
+        CardLayout a = (CardLayout) getContentPane().getLayout();
+        a.show(getContentPane(),"painelAluno");
+    }//GEN-LAST:event_botaoVoltarDaTabelaActionPerformed
 
-    private void formattedTextFieldCpfFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpfFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formattedTextFieldCpfFocusLost
+    private void jButtonCadastrarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarAlunoActionPerformed
+        CardLayout a = (CardLayout) getContentPane().getLayout();
+        a.show(getContentPane(),"panelCadastro");
+    }//GEN-LAST:event_jButtonCadastrarAlunoActionPerformed
 
-    private void textFieldAdicionarNaPosiçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAdicionarNaPosiçãoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldAdicionarNaPosiçãoActionPerformed
+    private void jButtonSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonSairActionPerformed
 
-    private void botaoAdicionarNaPosiçãoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarNaPosiçãoActionPerformed
-       
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void textMatricula1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textMatricula1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textMatricula1ActionPerformed
+
+    private void cadastrarAluno1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAluno1ActionPerformed
         try {
-            String StrPosicao = textFieldAdicionarNaPosição.getText().trim();
+            String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
+            DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
+            
+            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
+                                                        localDate, formattedTextFieldCpf1.getText(),
+                                                        formattedTextFieldTelefone1.getText());
+            AlunoController.cadastrarAluno(dadosAluno);
+            String mensagem = "ALUNO CADASTRADO";
+            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "ALUNO JÁ EXISTENTE", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_cadastrarAluno1ActionPerformed
+
+    private void textNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNome1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNome1ActionPerformed
+
+    private void formattedTextFieldCpf1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpf1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldCpf1FocusGained
+
+    private void formattedTextFieldCpf1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldCpf1FocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldCpf1FocusLost
+
+    private void formattedTextFieldCpf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldCpf1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldCpf1ActionPerformed
+
+    private void formattedTextFieldDataDeNascimento1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldDataDeNascimento1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldDataDeNascimento1FocusGained
+
+    private void formattedTextFieldDataDeNascimento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldDataDeNascimento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldDataDeNascimento1ActionPerformed
+
+    private void formattedTextFieldTelefone1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefone1FocusGained
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldTelefone1FocusGained
+
+    private void formattedTextFieldTelefone1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_formattedTextFieldTelefone1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formattedTextFieldTelefone1ActionPerformed
+
+    private void botaoAdicionarNaPosição1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarNaPosição1ActionPerformed
+        try {
+            String StrPosicao = textFieldAdicionarNaPosição1.getText().trim();
             if(StrPosicao ==null || StrPosicao.isEmpty()) {
                 JOptionPane.showMessageDialog(this,"A posição esta vazia,por favor insira uma posição","Erro",JOptionPane.ERROR_MESSAGE);
                 return;
@@ -632,36 +761,29 @@ public class JanelaInicial extends javax.swing.JFrame {
                 return;
             }
             
-            String dataDeNascimento = forformattedTextFieldDataDeNascimento.getText();
+            String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
             DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
             
-            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula.getText(), textNome.getText(),
-                                                        localDate, formattedTextFieldCpf.getText(),
-                                                        formattedTextFieldTelefone.getText());
+            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
+                                                        localDate, formattedTextFieldCpf1.getText(),
+                                                        formattedTextFieldTelefone1.getText());
             AlunoController.cadastrarAlunoNaPosicao(dadosAluno,posicao);
             String mensagem = "ALUNO CADASTRADO";
             JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
+    }//GEN-LAST:event_botaoAdicionarNaPosição1ActionPerformed
+
+    private void textFieldAdicionarNaPosição1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAdicionarNaPosição1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_botaoAdicionarNaPosiçãoActionPerformed
+    }//GEN-LAST:event_textFieldAdicionarNaPosição1ActionPerformed
 
-    private void botaoTabelaAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTabelaAlunosActionPerformed
-        
-        AlunoController.popularTabelaAlunos(tabelaAlunos);
-        
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         CardLayout a = (CardLayout) getContentPane().getLayout();
-        a.show(getContentPane(),"painelTabela");
-// TODO add your handling code here:
-    }//GEN-LAST:event_botaoTabelaAlunosActionPerformed
-
-    private void botaoVoltarDaTabelaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoVoltarDaTabelaActionPerformed
-        CardLayout a = (CardLayout) getContentPane().getLayout();
-        a.show(getContentPane(),"painelAluno");
-// TODO add your handling code here:
-    }//GEN-LAST:event_botaoVoltarDaTabelaActionPerformed
+        a.show(getContentPane(),"painelPrincipal");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -689,34 +811,39 @@ public class JanelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Aluno;
-    private javax.swing.JButton botaoAdicionarNaPosição;
+    private javax.swing.JButton botaoAdicionarNaPosição1;
     private javax.swing.JButton botaoAlunoMaisNovo;
     private javax.swing.JButton botaoAlunoMaisVelho;
     private javax.swing.JButton botaoTabelaAlunos;
     private javax.swing.JButton botaoVoltarDaTabela;
     private javax.swing.JButton buttonRemoverAluno;
-    private javax.swing.JButton cadastrarAluno;
+    private javax.swing.JButton cadastrarAluno1;
     private javax.swing.JButton consultarAluno;
-    private javax.swing.JFormattedTextField forformattedTextFieldDataDeNascimento;
-    private javax.swing.JFormattedTextField formattedTextFieldCpf;
-    private javax.swing.JFormattedTextField formattedTextFieldTelefone;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelCpf;
-    private javax.swing.JLabel labelDataDeNascimento;
-    private javax.swing.JLabel labelMatricula;
-    private javax.swing.JLabel labelNome;
-    private javax.swing.JLabel labelTelefone;
+    private javax.swing.JFormattedTextField formattedTextFieldCpf1;
+    private javax.swing.JFormattedTextField formattedTextFieldDataDeNascimento1;
+    private javax.swing.JFormattedTextField formattedTextFieldTelefone1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonCadastrarAluno;
+    private javax.swing.JButton jButtonConsultarAluno;
+    private javax.swing.JButton jButtonSair;
+    private javax.swing.JLabel jLabelMatricula;
+    private javax.swing.JLabel jlabelNome;
+    private javax.swing.JLabel jlabelNome1;
+    private javax.swing.JLabel jlabelNome2;
+    private javax.swing.JLabel jlabelNome3;
     private javax.swing.JPanel painelAluno;
+    private javax.swing.JPanel painelCadastro;
     private javax.swing.JPanel painelPrincipal;
     private javax.swing.JPanel painelTabela;
     private javax.swing.JScrollPane scrollPaneDaTabela;
     private javax.swing.JTable tabelaAlunos;
     private javax.swing.JTextField textConsultarAluno;
-    private javax.swing.JTextField textFieldAdicionarNaPosição;
+    private javax.swing.JTextField textFieldAdicionarNaPosição1;
     private javax.swing.JTextField textFieldRemoverALuno;
-    private javax.swing.JTextField textMatricula;
-    private javax.swing.JTextField textNome;
+    private javax.swing.JTextField textMatricula1;
+    private javax.swing.JTextField textNome1;
     private javax.swing.JLabel tituloPrincipal;
     private javax.swing.JButton totalAlunos;
     private javax.swing.JButton voltarDeAluno;
