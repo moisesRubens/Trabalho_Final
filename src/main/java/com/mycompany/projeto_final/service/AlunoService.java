@@ -4,6 +4,7 @@ import com.mycompany.projeto_final.dao.AlunoDAO;
 import com.mycompany.projeto_final.dao.RemocaoAlunoDAO;
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
+import jakarta.persistence.PersistenceException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -157,23 +158,23 @@ public class AlunoService {
         return aluno;
     } 
 
-    public static Aluno verificarAlunoMaisVelho() throws AlunoNaoEncontradoException {
-    List<Aluno> alunos = AlunoDAO.getAllAlunos();
+    public static Aluno verificarAlunoMaisVelho() throws Exception {
+        List<Aluno> alunos = AlunoDAO.getAllAlunos();
 
-    Aluno alunoVelho = alunos.get(0);
-
-    for (int i = 1; i < alunos.size(); i++) {
-        Aluno atual = alunos.get(i);
-        if (atual.getIdade() > alunoVelho.getIdade()) {
-            alunoVelho = atual;
+        Aluno alunoVelho = alunos.get(0);
+        Aluno atual;
+        for (int i = 1; i < alunos.size(); i++) {
+            atual = alunos.get(i);
+            if (atual.getIdade() > alunoVelho.getIdade()) {
+                alunoVelho = atual;
+            }
         }
+
+        return alunoVelho;
     }
 
-    return alunoVelho;
-}
-
     
-    public static Aluno verificarAlunoMaisNovo() throws AlunoNaoEncontradoException {
+    public static Aluno verificarAlunoMaisNovo() throws Exception {
         List<Aluno> alunos = AlunoDAO.getAllAlunos();
         
         Aluno alunoMaisNovo = alunos.get(0);
@@ -208,7 +209,7 @@ public class AlunoService {
         
     }
     
-    public static void carregaremSVC() {
+    public static void carregaremSVC() throws Exception{
         try {
         alunos.clear();
         

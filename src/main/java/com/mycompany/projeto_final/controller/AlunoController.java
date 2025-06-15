@@ -1,12 +1,18 @@
 
 package com.mycompany.projeto_final.controller;
 
+import com.mycompany.projeto_final.dao.AlunoDAO;
 import com.mycompany.projeto_final.domain.Aluno;
 import com.mycompany.projeto_final.domain.AlunoRequestDTO;
 import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 import com.mycompany.projeto_final.dao.AlunoDAO;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
@@ -40,7 +46,7 @@ public class AlunoController {
         return AlunoService.getSize();
     }
     
-    public static AlunoResponseDTO maisVelho() throws AlunoNaoEncontradoException {
+    public static AlunoResponseDTO maisVelho() throws Exception {
         Aluno aluno = AlunoService.verificarAlunoMaisVelho(); 
        
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),
@@ -48,7 +54,7 @@ public class AlunoController {
                                     aluno.getTelefone(), aluno.getIdade());
     }
    
-    public static AlunoResponseDTO maisNovo() throws AlunoNaoEncontradoException{
+    public static AlunoResponseDTO maisNovo() throws Exception{
         Aluno aluno = AlunoService.verificarAlunoMaisNovo();
         
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),
@@ -65,7 +71,7 @@ public class AlunoController {
         }
     }
     
-    public static void popularTabelaAlunos(JTable tabelaAlunos) throws AlunoNaoEncontradoException {
+    public static void popularTabelaAlunos(JTable tabelaAlunos) throws Exception {
         List<Aluno> listaDeAlunos = AlunoDAO.getAllAlunos();
         DefaultTableModel model = new DefaultTableModel();
 
@@ -93,7 +99,7 @@ public class AlunoController {
         tabelaAlunos.setModel(model);
     }
     
-    public static void carregaremSVC() {
+    public static void carregaremSVC() throws Exception{
         AlunoService.carregaremSVC();
     }
     

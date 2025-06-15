@@ -10,6 +10,7 @@ import com.mycompany.projeto_final.domain.AlunoRequestDTO;
 import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
+import jakarta.persistence.PersistenceException;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -31,9 +32,13 @@ public class JanelaInicial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
    
+    public enum AlunoMais{
+        MAIS_NOVO,
+        MAIS_VELHO
+    }
+    
     public JanelaInicial() {
         initComponents();
-        AlunoController.carregaremSVC();
         textConsultarAluno.setText("MATRICULA");
         textConsultarAluno.setForeground(Color.GRAY);
         textFieldRemoverALuno.setText("MATRICULA");
@@ -458,79 +463,65 @@ public class JanelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(jLabelMatricula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(textMatricula1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(jlabelNome)
-                                .addGap(30, 30, 30)
-                                .addComponent(textNome1)))
-                        .addGap(220, 220, 220)
-                        .addComponent(botaoAdicionarNaPosição1)
-                        .addGap(26, 26, 26)
-                        .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(145, 145, 145))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(cadastrarAluno1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
                     .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(painelCadastroLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addGap(63, 63, 63)
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlabelNome1)
+                                    .addComponent(jlabelNome)
+                                    .addComponent(jLabelMatricula))
                                 .addGap(18, 18, 18)
-                                .addComponent(cadastrarAluno1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                                    .addComponent(textNome1)
+                                    .addComponent(textMatricula1)))
                             .addGroup(painelCadastroLayout.createSequentialGroup()
+                                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jlabelNome2)
+                                    .addComponent(jlabelNome3))
+                                .addGap(18, 18, 18)
                                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jlabelNome1)
-                                            .addComponent(jlabelNome2))
-                                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                                .addGap(30, 30, 30)
-                                                .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(painelCadastroLayout.createSequentialGroup()
-                                                .addGap(18, 18, 18)
-                                                .addComponent(formattedTextFieldDataDeNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                                        .addComponent(jlabelNome3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(formattedTextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())))
+                                    .addComponent(formattedTextFieldDataDeNascimento1)
+                                    .addComponent(formattedTextFieldTelefone1))))
+                        .addGap(44, 44, 44)
+                        .addComponent(botaoAdicionarNaPosição1)
+                        .addGap(18, 18, 18)
+                        .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 115, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         painelCadastroLayout.setVerticalGroup(
             painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelCadastroLayout.createSequentialGroup()
-                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textMatricula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelMatricula)))
-                    .addGroup(painelCadastroLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(botaoAdicionarNaPosição1)
-                            .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(35, 35, 35)
+                .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textMatricula1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelMatricula)
+                    .addComponent(botaoAdicionarNaPosição1)
+                    .addComponent(textFieldAdicionarNaPosição1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textNome1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlabelNome))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlabelNome1)
-                    .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(formattedTextFieldCpf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabelNome1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlabelNome2)
                     .addComponent(formattedTextFieldDataDeNascimento1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlabelNome3)
-                    .addComponent(formattedTextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                    .addComponent(formattedTextFieldTelefone1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlabelNome3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(painelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(cadastrarAluno1)
@@ -585,36 +576,37 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
         try {
             AlunoResponseDTO dadosAluno = AlunoController.maisNovo();
-            String mensagem = "ALUNO MAIS NOVO: \n" +
-                              "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
-                              "NOME: " + dadosAluno.nome() + "\n" + 
-                              "CPF: " + dadosAluno.cpf() + "\n" + 
-                              "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
-                              "TELEFONE: " + dadosAluno.telefone() + "\n" + 
-                              "IDADE: " + dadosAluno.idade();
-            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-        } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_NOVO);
+        } catch(Exception e) {
+            tratar(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
 
-    private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
-        try {
-            AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
-        
-            String mensagem = "ALUNO MAIS VELHO: \n" +
+    private void subirDadosAlunoMainNovo(AlunoResponseDTO dadosAluno, AlunoMais tipo) {
+        String tipoAluno = (tipo.equals(AlunoMais.MAIS_NOVO)) ?"MAIS NOVO" :"MAIS VELHO";
+        String mensagem = "ALUNO " + tipoAluno + ": \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
                               "NOME: " + dadosAluno.nome() + "\n" + 
                               "CPF: " + dadosAluno.cpf() + "\n" + 
                               "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
-            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
-        } catch(AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void tratar(Exception e) {
+        JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
+        try {
+            AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
+            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_VELHO);
+        } catch(Exception e) {
+            tratar(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
-
+    
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
         try {
             AlunoController.removerAluno(textFieldRemoverALuno.getText());
@@ -664,7 +656,7 @@ public class JanelaInicial extends javax.swing.JFrame {
             
         
         AlunoController.popularTabelaAlunos(tabelaAlunos);
-        } catch(AlunoNaoEncontradoException e)
+        } catch(Exception e)
         {
             JOptionPane.showMessageDialog(this,"Não foi possivel encontrar os alunos:"+e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         }
