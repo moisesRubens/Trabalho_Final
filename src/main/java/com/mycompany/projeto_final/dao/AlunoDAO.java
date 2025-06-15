@@ -9,6 +9,7 @@ import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -36,15 +37,20 @@ public class AlunoDAO {
     }
 
     public static void adicionarAluno(Aluno aluno) throws Exception {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
-        EntityManager em = emf.createEntityManager();
-
+      
+        try{
+           EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+           EntityManager em = emf.createEntityManager();
+       
         em.getTransaction().begin();
         em.persist(aluno);
         em.getTransaction().commit();
-        em.close();
-        emf.close();
         salvarAlunosEmCSV(aluno);
+        em.close();
+           emf.close();
+       } catch (PersistenceException e) {
+           throw new Exception("Não foi possivel conectar ao banco de dados ou os dados estão duplicados");
+    } 
     }
     
     public static List<Aluno> getAllAlunos() throws AlunoNaoEncontradoException {

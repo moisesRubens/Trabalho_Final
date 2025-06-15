@@ -33,6 +33,7 @@ public class JanelaInicial extends javax.swing.JFrame {
    
     public JanelaInicial() {
         initComponents();
+        AlunoController.carregaremSVC();
         textConsultarAluno.setText("MATRICULA");
         textConsultarAluno.setForeground(Color.GRAY);
         textFieldRemoverALuno.setText("MATRICULA");
@@ -659,8 +660,14 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_textFieldRemoverALunoActionPerformed
 
     private void botaoTabelaAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoTabelaAlunosActionPerformed
+        try {
+            
         
         AlunoController.popularTabelaAlunos(tabelaAlunos);
+        } catch(AlunoNaoEncontradoException e)
+        {
+            JOptionPane.showMessageDialog(this,"Não foi possivel encontrar os alunos:"+e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+        }
         
         CardLayout a = (CardLayout) getContentPane().getLayout();
         a.show(getContentPane(),"painelTabela");
@@ -707,7 +714,7 @@ public class JanelaInicial extends javax.swing.JFrame {
         } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "ALUNO JÁ EXISTENTE", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "ERRO:"+e.getMessage(),"INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_cadastrarAluno1ActionPerformed
 
@@ -773,6 +780,8 @@ public class JanelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(this, "ERRO:"+e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_botaoAdicionarNaPosição1ActionPerformed
 
