@@ -145,7 +145,7 @@ public class AlunoService {
             throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
         }
         RemocaoAlunoDAO rAD = new RemocaoAlunoDAO();
-        rAD.removerAluno(alunos, aluno);
+        alunos =rAD.removerAluno(alunos, aluno);
         RemocaoAlunoDAO.atualizarArquivoCSV(alunos);
     }
     
