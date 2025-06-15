@@ -9,17 +9,17 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
     
-    <class>package com.mycompany.projeto_final.domain.Aluno</class>
+    <class>com.mycompany.projeto_final.domain.Aluno</class>
 
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="jakarta.persistence.jdbc.url" 
-                value="jdbc:mysql://localhost:3306/NOME_BD?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
-      <property name="jakarta.persistence.jdbc.user" value=USER/>
-      <property name="jakarta.persistence.jdbc.password" value=SENHA/>
+                value="jdbc:mysql://localhost:3306/johnny?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
+      <property name="jakarta.persistence.jdbc.user" value="root"/>
+      <property name="jakarta.persistence.jdbc.password" value="jo@1234"/>
 
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="create"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>
     </properties>
