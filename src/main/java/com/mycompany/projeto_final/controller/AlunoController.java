@@ -7,6 +7,7 @@ import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
+import jakarta.persistence.PersistenceException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -39,7 +40,7 @@ public class AlunoController {
         return AlunoService.getSize();
     }
     
-    public static AlunoResponseDTO maisVelho() throws AlunoNaoEncontradoException {
+    public static AlunoResponseDTO maisVelho() throws Exception {
         Aluno aluno = AlunoService.verificarAlunoMaisVelho(); 
        
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),
@@ -47,7 +48,7 @@ public class AlunoController {
                                     aluno.getTelefone(), aluno.getIdade());
     }
    
-    public static AlunoResponseDTO maisNovo() throws AlunoNaoEncontradoException{
+    public static AlunoResponseDTO maisNovo() throws Exception{
         Aluno aluno = AlunoService.verificarAlunoMaisNovo();
         
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(),

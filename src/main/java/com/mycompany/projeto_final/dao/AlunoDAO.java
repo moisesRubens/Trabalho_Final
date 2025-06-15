@@ -9,12 +9,15 @@ import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceException;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,6 +26,7 @@ import java.util.List;
 public class AlunoDAO {
     static final String CSV_FILE_NAME = "ListagemAlunos.txt";
     static final DateTimeFormatter CSV_DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    private static final Logger logger = Logger.getLogger(AlunoDAO.class.getName());
     
     public static void salvarAlunosEmCSV(Aluno aluno) {
         try (BufferedWriter arquivo = new BufferedWriter(new FileWriter(CSV_FILE_NAME, true))) {
@@ -47,22 +51,35 @@ public class AlunoDAO {
         salvarAlunosEmCSV(aluno);
     }
     
-    public static List<Aluno> getAllAlunos() throws AlunoNaoEncontradoException {
+    public static List<Aluno> getAllAlunos() throws Exception {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
         EntityManager em = emf.createEntityManager();
         try {
-            List<Aluno> alunos = em.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
-            if (alunos.isEmpty()) {
-                throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+            List<Aluno> alunos = getAllAlunosFromDB(em);
+            if(alunos.isEmpty()) {
+                throw new AlunoNaoEncontradoException("NÃO HÁ ALUNOS CADASTRADOS");
             }
             return alunos;
+        }catch(AlunoNaoEncontradoException e) {
+            throw e;
         } catch(Exception e) {
-            throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
+            tratar(e);
+            throw new PersistenceException("ERRO AO BUSCAR ALUNOS", e);
         } finally {
             em.close();
             emf.close();
         }
     }
+    
+    private static List<Aluno> getAllAlunosFromDB(EntityManager em) {
+        List<Aluno> alunos = em.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
+        return alunos;
+    }
+    
+    private static void tratar(Exception e) {
+        logger.log(Level.WARNING, "ERRO AO BUSCAR DADOS DE ALUNOS NO BANCO DE DADOS", e);
+    }
+
     
     public static Aluno getAluno(String matricula) throws AlunoNaoEncontradoException {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
