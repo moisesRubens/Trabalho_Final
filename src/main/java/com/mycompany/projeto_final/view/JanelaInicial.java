@@ -32,6 +32,11 @@ public class JanelaInicial extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(JanelaInicial.class.getName());
    
+    public enum AlunoMais{
+        MAIS_NOVO,
+        MAIS_VELHO
+    }
+    
     public JanelaInicial() {
         initComponents();
         textConsultarAluno.setText("MATRICULA");
@@ -571,36 +576,37 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
         try {
             AlunoResponseDTO dadosAluno = AlunoController.maisNovo();
-            String mensagem = "ALUNO MAIS NOVO: \n" +
-                              "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
-                              "NOME: " + dadosAluno.nome() + "\n" + 
-                              "CPF: " + dadosAluno.cpf() + "\n" + 
-                              "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
-                              "TELEFONE: " + dadosAluno.telefone() + "\n" + 
-                              "IDADE: " + dadosAluno.idade();
-            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_NOVO);
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+            tratar(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
 
-    private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
-        try {
-            AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
-        
-            String mensagem = "ALUNO MAIS VELHO: \n" +
+    private void subirDadosAlunoMainNovo(AlunoResponseDTO dadosAluno, AlunoMais tipo) {
+        String tipoAluno = (tipo.equals(AlunoMais.MAIS_NOVO)) ?"MAIS NOVO" :"MAIS VELHO";
+        String mensagem = "ALUNO " + tipoAluno + ": \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
                               "NOME: " + dadosAluno.nome() + "\n" + 
                               "CPF: " + dadosAluno.cpf() + "\n" + 
                               "DATA DE NASCIMENTO: " + dadosAluno.dataNascimento().toString() + "\n" + 
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
-            JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void tratar(Exception e) {
+        JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
+        try {
+            AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
+            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_VELHO);
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+            tratar(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
-
+    
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
         try {
             AlunoController.removerAluno(textFieldRemoverALuno.getText());
