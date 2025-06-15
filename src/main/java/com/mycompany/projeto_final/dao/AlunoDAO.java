@@ -91,4 +91,15 @@ public class AlunoDAO {
             emf.close();
         }
     }
+    
+     public static long getTotalAlunos() {
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");  
+           EntityManager em = emf.createEntityManager();
+         try {
+             return em.createQuery("SELECT COUNT(a) FROM Aluno a", Long.class).getSingleResult();
+         } finally {
+             em.close();
+             emf.close();
+         }
+     }
 }

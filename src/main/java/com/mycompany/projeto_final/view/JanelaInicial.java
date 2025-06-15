@@ -578,8 +578,8 @@ public class JanelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarAlunoActionPerformed
 
     private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed
-       Integer quantidade = AlunoController.quantidadeTotalDeAlunos();
-       JOptionPane.showMessageDialog(this, quantidade.toString(), "QUANTIDADE DE ALUNOS", JOptionPane.INFORMATION_MESSAGE);
+      
+       JOptionPane.showMessageDialog(this,Long.toString(AlunoController.quantidadeTotalDeAlunos()), "QUANTIDADE DE ALUNOS", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_totalAlunosActionPerformed
 
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed

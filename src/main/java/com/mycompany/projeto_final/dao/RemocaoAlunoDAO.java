@@ -27,7 +27,7 @@ public class RemocaoAlunoDAO implements AlunoDAOInterface {
             em.remove(alunoRemover);
             em.getTransaction().commit();
 
-            alunos.removeIf(aluno -> alunoRemover.getMatricula().equals(a.getMatricula()));
+           alunos.removeIf(aluno -> ((Aluno)aluno).getMatricula().equals(a.getMatricula()));
             return alunos;
 
         } catch (Exception e) {
