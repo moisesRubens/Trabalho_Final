@@ -40,15 +40,20 @@ public class AlunoDAO {
     }
 
     public static void adicionarAluno(Aluno aluno) throws Exception {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
-        EntityManager em = emf.createEntityManager();
-
+      
+        try{
+           EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+           EntityManager em = emf.createEntityManager();
+       
         em.getTransaction().begin();
         em.persist(aluno);
         em.getTransaction().commit();
-        em.close();
-        emf.close();
         salvarAlunosEmCSV(aluno);
+        em.close();
+           emf.close();
+       } catch (PersistenceException e) {
+           throw new Exception("Não foi possivel conectar ao banco de dados ou os dados estão duplicados");
+    } 
     }
     
     public static List<Aluno> getAllAlunos() throws Exception {

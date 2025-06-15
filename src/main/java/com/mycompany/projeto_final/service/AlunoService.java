@@ -121,10 +121,12 @@ public class AlunoService {
         }
        
         if(!existeAluno(aluno.getMatricula())) {
+            alunos.add(aluno);
             AlunoDAO.adicionarAluno(aluno);
             return true;
-        }
+        } 
         return false;
+        
     }
     
     public static void removerAluno(String matricula) throws IllegalArgumentException, Exception {
@@ -186,7 +188,7 @@ public class AlunoService {
         return alunoMaisNovo;
     }
     
-    public static boolean addAlunoNaPosicao(Aluno aluno,int posicao) throws IllegalArgumentException {
+    public static boolean addAlunoNaPosicao(Aluno aluno,int posicao) throws IllegalArgumentException, Exception {
         aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
         int idade = aluno.getIdade();
         
@@ -198,9 +200,22 @@ public class AlunoService {
        
         if(!existeAluno(aluno.getMatricula())) {
             alunos.add(posicao,aluno);
-            
+             AlunoDAO.adicionarAluno(aluno);
             return true;
+        } else
+        {
+            throw new Exception("Não foi possiveladicionar o aluno");
         }
-        return false;
+        
+    }
+    
+    public static void carregaremSVC() {
+        try {
+        alunos.clear();
+        
+        alunos.addAll(AlunoDAO.getAllAlunos());
+        } catch(AlunoNaoEncontradoException e) {
+            
+        }
     }
 }

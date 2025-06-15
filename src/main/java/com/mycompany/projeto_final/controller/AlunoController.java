@@ -7,7 +7,11 @@ import com.mycompany.projeto_final.domain.AlunoResponseDTO;
 import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import com.mycompany.projeto_final.service.AlunoService;
+<<<<<<< HEAD
 import jakarta.persistence.PersistenceException;
+=======
+import com.mycompany.projeto_final.dao.AlunoDAO;
+>>>>>>> f6698a302e566f63103ef7957cc4a8a55cf80d67
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,7 +60,7 @@ public class AlunoController {
                 aluno.getIdade());
     }
     
-    public static void cadastrarAlunoNaPosicao(AlunoRequestDTO dadosAluno,int posicao) throws IllegalArgumentException, AlunoJaCadastradoException {
+    public static void cadastrarAlunoNaPosicao  (AlunoRequestDTO dadosAluno,int posicao) throws IllegalArgumentException, AlunoJaCadastradoException, Exception {
         Aluno aluno = new Aluno(dadosAluno.nome().toUpperCase(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf());
         
@@ -65,8 +69,8 @@ public class AlunoController {
         }
     }
     
-    public static void popularTabelaAlunos(JTable tabelaAlunos) {
-        List<Aluno> listaDeAlunos = AlunoService.alunos;
+    public static void popularTabelaAlunos(JTable tabelaAlunos) throws AlunoNaoEncontradoException {
+        List<Aluno> listaDeAlunos = AlunoDAO.getAllAlunos();
         DefaultTableModel model = new DefaultTableModel();
 
         model.addColumn("Matrícula");
@@ -91,6 +95,10 @@ public class AlunoController {
             }
         }
         tabelaAlunos.setModel(model);
+    }
+    
+    public static void carregaremSVC() {
+        AlunoService.carregaremSVC();
     }
     
 }
