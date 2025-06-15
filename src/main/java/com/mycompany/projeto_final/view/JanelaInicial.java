@@ -39,7 +39,6 @@ public class JanelaInicial extends javax.swing.JFrame {
     
     public JanelaInicial() {
         initComponents();
-        AlunoController.carregaremSVC();
         textConsultarAluno.setText("MATRICULA");
         textConsultarAluno.setForeground(Color.GRAY);
         textFieldRemoverALuno.setText("MATRICULA");
@@ -657,7 +656,7 @@ public class JanelaInicial extends javax.swing.JFrame {
             
         
         AlunoController.popularTabelaAlunos(tabelaAlunos);
-        } catch(AlunoNaoEncontradoException e)
+        } catch(Exception e)
         {
             JOptionPane.showMessageDialog(this,"Não foi possivel encontrar os alunos:"+e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
         }

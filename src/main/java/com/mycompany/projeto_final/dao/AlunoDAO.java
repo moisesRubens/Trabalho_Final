@@ -60,11 +60,7 @@ public class AlunoDAO {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
         EntityManager em = emf.createEntityManager();
         try {
-            List<Aluno> alunos = getAllAlunosFromDB(em);
-            if(alunos.isEmpty()) {
-                throw new AlunoNaoEncontradoException("NÃO HÁ ALUNOS CADASTRADOS");
-            }
-            return alunos;
+            return getAllAlunosFromDB(em);
         }catch(AlunoNaoEncontradoException e) {
             throw e;
         } catch(Exception e) {
@@ -76,8 +72,11 @@ public class AlunoDAO {
         }
     }
     
-    private static List<Aluno> getAllAlunosFromDB(EntityManager em) {
+    private static List<Aluno> getAllAlunosFromDB(EntityManager em) throws AlunoNaoEncontradoException {
         List<Aluno> alunos = em.createQuery("SELECT a FROM Aluno a", Aluno.class).getResultList();
+        if(alunos.isEmpty()) {
+                throw new AlunoNaoEncontradoException("NÃO HÁ ALUNOS CADASTRADOS");
+        }
         return alunos;
     }
     

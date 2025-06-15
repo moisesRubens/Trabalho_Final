@@ -209,7 +209,7 @@ public class AlunoService {
         
     }
     
-    public static void carregaremSVC() {
+    public static void carregaremSVC() throws Exception{
         try {
         alunos.clear();
         
