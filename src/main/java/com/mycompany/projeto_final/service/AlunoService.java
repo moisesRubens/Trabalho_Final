@@ -83,7 +83,7 @@ public class AlunoService {
     private static boolean verificarMatricula(String matricula) {
         char[] str = matricula.toCharArray();
         
-        if(matricula.isEmpty()) {
+        if(matricula.isEmpty() || matricula.equals("MATRICULA") || matricula.isBlank()) {
             return false;
         }
         
@@ -150,9 +150,9 @@ public class AlunoService {
         RemocaoAlunoDAO.atualizarArquivoCSV(alunos);
     }
     
-    public static Aluno getAluno(String matricula) throws IllegalArgumentException, AlunoNaoEncontradoException {
-        if(matricula.equals("MATRICULA")) {
-            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
+    public static Aluno getAluno(String matricula) throws Exception {
+        if(!verificarMatricula(matricula)) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA VALIDA");
         }
         Aluno aluno = AlunoDAO.getAluno(matricula);
         return aluno;
@@ -165,11 +165,10 @@ public class AlunoService {
         Aluno atual;
         for (int i = 1; i < alunos.size(); i++) {
             atual = alunos.get(i);
-            if (atual.getIdade() > alunoVelho.getIdade()) {
+            if (atual.getDataNascimento().isBefore(alunoVelho.getDataNascimento())) {
                 alunoVelho = atual;
             }
         }
-
         return alunoVelho;
     }
 
@@ -181,9 +180,10 @@ public class AlunoService {
         Aluno atual;
         for(int i = 1; i<alunos.size(); i++) {
             atual = alunos.get(i);
-            if (atual.getIdade() < alunoMaisNovo.getIdade()) {
+            if(atual.getDataNascimento().isAfter(alunoMaisNovo.getDataNascimento())) {
                 alunoMaisNovo = atual;
             }
+            
         }
         return alunoMaisNovo;
     }
