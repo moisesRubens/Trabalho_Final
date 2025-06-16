@@ -40,20 +40,26 @@ public class AlunoDAO {
     }
 
     public static void adicionarAluno(Aluno aluno) throws Exception {
-      
+           EntityManagerFactory emf = null;
+           EntityManager em = null;
         try{
-           EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
-           EntityManager em = emf.createEntityManager();
-       
+            emf = Persistence.createEntityManagerFactory("meuPU");
+            em = emf.createEntityManager();
         em.getTransaction().begin();
         em.persist(aluno);
         em.getTransaction().commit();
         salvarAlunosEmCSV(aluno);
-        em.close();
-           emf.close();
+        
        } catch (PersistenceException e) {
            throw new Exception("Não foi possivel conectar ao banco de dados ou os dados estão duplicados");
-    } 
+    } finally {
+           if (em != null) {
+            em.close();
+        }
+           if (emf != null) {
+            emf.close();
+        }
+    }
     }
     
     public static List<Aluno> getAllAlunos() throws Exception {
@@ -100,4 +106,15 @@ public class AlunoDAO {
             emf.close();
         }
     }
+    
+     public static long getTotalAlunos() {
+          EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");  
+           EntityManager em = emf.createEntityManager();
+         try {
+             return em.createQuery("SELECT COUNT(a) FROM Aluno a", Long.class).getSingleResult();
+         } finally {
+             em.close();
+             emf.close();
+         }
+     }
 }

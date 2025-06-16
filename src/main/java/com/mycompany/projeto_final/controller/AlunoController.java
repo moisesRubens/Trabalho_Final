@@ -14,8 +14,6 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import com.mycompany.projeto_final.dao.AlunoDAO;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -42,7 +40,7 @@ public class AlunoController {
                                     aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());
     }
     
-    public static int quantidadeTotalDeAlunos() {
+    public static long quantidadeTotalDeAlunos() {
         return AlunoService.getSize();
     }
     

@@ -21,8 +21,8 @@ public class AlunoService {
     
     public static List<Aluno> alunos = new ArrayList<>();
     
-    public static int getSize() {
-        return alunos.size();
+    public static long getSize() {
+        return AlunoDAO.getTotalAlunos();
     } 
     
     private static boolean existeAluno(String matricula) {
@@ -134,9 +134,9 @@ public class AlunoService {
             throw new IllegalArgumentException("INSIRA UMA MATRICULA");
         }
         
-        List<Aluno> alunos = AlunoDAO.getAllAlunos();
+        List<Aluno> alunos1 = AlunoDAO.getAllAlunos();
         Aluno aluno = null;
-        for(Aluno a : alunos) {
+        for(Aluno a : alunos1) {
             if(a.getMatricula().equals(matricula)) {
                 aluno = a;
                 break;
@@ -146,7 +146,7 @@ public class AlunoService {
             throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
         }
         RemocaoAlunoDAO rAD = new RemocaoAlunoDAO();
-        rAD.removerAluno(alunos, aluno);
+        alunos =rAD.removerAluno(alunos1, aluno);
         RemocaoAlunoDAO.atualizarArquivoCSV(alunos);
     }
     
