@@ -602,6 +602,10 @@ public class JanelaInicial extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
     }
     
+    private void exibirMensagemDeExcecao(String mensagem) {
+        JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
         try {
             AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
@@ -613,15 +617,17 @@ public class JanelaInicial extends javax.swing.JFrame {
     
     private void buttonRemoverAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverAlunoActionPerformed
         try {
-            AlunoController.removerAluno(textFieldRemoverALuno.getText());
-            JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            removerAlunoAux();
         } catch(Exception e) {
-            
+            exibirMensagemDeExcecao(e);
         }
     }//GEN-LAST:event_buttonRemoverAlunoActionPerformed
 
+    private void removerAlunoAux() throws Exception{
+        AlunoController.removerAluno(textFieldRemoverALuno.getText());
+        JOptionPane.showMessageDialog(this, "ALUNO REMOVIDO", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void textConsultarAlunoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textConsultarAlunoFocusLost
         if (textConsultarAluno.getText().isEmpty()) {
             textConsultarAluno.setForeground(Color.GRAY);
@@ -697,23 +703,25 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     private void cadastrarAluno1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarAluno1ActionPerformed
         try {
-            String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
-            DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
-            
-            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
-                                                        localDate, formattedTextFieldCpf1.getText(),
-                                                        formattedTextFieldTelefone1.getText());
-            AlunoController.cadastrarAluno(dadosAluno);
-            String mensagem = "ALUNO CADASTRADO";
-            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            cadastrarAlunoAux();
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "ERRO:"+e.getMessage(),"INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            exibirMensagemDeExcecao(e);
         }
     }//GEN-LAST:event_cadastrarAluno1ActionPerformed
 
+    private void cadastrarAlunoAux() throws Exception {
+        String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
+            
+        AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
+                                                        localDate, formattedTextFieldCpf1.getText(),
+                                                        formattedTextFieldTelefone1.getText());
+        AlunoController.cadastrarAluno(dadosAluno);
+        String mensagem = "ALUNO CADASTRADO";
+        JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void textNome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNome1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textNome1ActionPerformed
@@ -748,39 +756,34 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     private void botaoAdicionarNaPosição1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAdicionarNaPosição1ActionPerformed
         try {
-            String StrPosicao = textFieldAdicionarNaPosição1.getText().trim();
-            if(StrPosicao ==null || StrPosicao.isEmpty()) {
-                JOptionPane.showMessageDialog(this,"A posição esta vazia,por favor insira uma posição","Erro",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if(!StrPosicao.matches("\\d+")) {
-                JOptionPane.showMessageDialog(this,"É necessario o campo ser composto somente por numeros.","Erro",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            int posicao = Integer.parseInt(StrPosicao);
-            
-            if(posicao > AlunoController.quantidadeTotalDeAlunos()) {
-                JOptionPane.showMessageDialog(this,"A posição é maior que o tamanho da lista","Erro",JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            
-            String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
-            DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
-            
-            AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
-                                                        localDate, formattedTextFieldCpf1.getText(),
-                                                        formattedTextFieldTelefone1.getText());
-            AlunoController.cadastrarAlunoNaPosicao(dadosAluno,posicao);
-            String mensagem = "ALUNO CADASTRADO";
-            JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        } catch(IllegalArgumentException | AlunoJaCadastradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            adicionarNaPosicaoAux();
+        } catch(IllegalArgumentException e) {
+            exibirMensagemDeExcecao("INSIRA UMA POSICAO VALIDA");
         } catch(Exception e) {
-            JOptionPane.showMessageDialog(this, "ERRO:"+e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+            exibirMensagemDeExcecao(e);
         }
     }//GEN-LAST:event_botaoAdicionarNaPosição1ActionPerformed
 
+    private void adicionarNaPosicaoAux() throws Exception {
+        String StrPosicao = textFieldAdicionarNaPosição1.getText().trim();
+        
+        if(StrPosicao == null || StrPosicao.isEmpty() || StrPosicao.isBlank()) {
+            throw new IllegalArgumentException("INSIRA UMA POSICAO");
+        }
+            
+        int posicao = Integer.parseInt(StrPosicao);
+        String dataDeNascimento = formattedTextFieldDataDeNascimento1.getText();
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(dataDeNascimento, dTF);
+
+        AlunoRequestDTO dadosAluno = new AlunoRequestDTO(textMatricula1.getText(), textNome1.getText(),
+                                                        localDate, formattedTextFieldCpf1.getText(),
+                                                        formattedTextFieldTelefone1.getText());
+        AlunoController.cadastrarAlunoNaPosicao(dadosAluno, posicao);
+
+        JOptionPane.showMessageDialog(this, "ALUNO CADASTRADO", "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
     private void textFieldAdicionarNaPosição1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldAdicionarNaPosição1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textFieldAdicionarNaPosição1ActionPerformed

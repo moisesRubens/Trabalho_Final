@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mycompany.projeto_final.dao.AlunoDAO;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 
@@ -25,9 +26,7 @@ public class AlunoController {
         Aluno aluno = new Aluno(dadosAluno.nome().toUpperCase(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf());
         
-        if(!AlunoService.addAluno(aluno)) {
-            throw new AlunoJaCadastradoException("ERRO. ALUNO JÁ EXISTENTE");
-        }
+        AlunoService.addAluno(aluno);
     }
     
     public static void removerAluno(String matricula) throws IllegalArgumentException, Exception {
@@ -60,7 +59,11 @@ public class AlunoController {
                 aluno.getIdade());
     }
     
-    public static void cadastrarAlunoNaPosicao  (AlunoRequestDTO dadosAluno,int posicao) throws IllegalArgumentException, AlunoJaCadastradoException, Exception {
+    public static void cadastrarAlunoNaPosicao(AlunoRequestDTO dadosAluno, int posicao) throws IllegalArgumentException, AlunoJaCadastradoException, Exception {
+        if(posicao > AlunoService.getSize()) {
+            throw new IllegalArgumentException("INSIRA EM UMA POSICAO VALIDA");
+        }
+        
         Aluno aluno = new Aluno(dadosAluno.nome().toUpperCase(), dadosAluno.matricula(), dadosAluno.dataNascimento(), 
                                 dadosAluno.telefone(), dadosAluno.cpf());
         
