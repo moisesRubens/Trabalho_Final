@@ -34,7 +34,7 @@ public class AlunoController {
         AlunoService.removerAluno(matricula);
     }
     
-    public static AlunoResponseDTO consultarAluno(String matricula) throws AlunoNaoEncontradoException {
+    public static AlunoResponseDTO consultarAluno(String matricula) throws Exception {
         Aluno aluno = AlunoService.getAluno(matricula);
         return new AlunoResponseDTO(aluno.getMatricula(), aluno.getNome(), aluno.getDataNascimento(), 
                                     aluno.getCpf(), aluno.getTelefone(), aluno.getIdade());

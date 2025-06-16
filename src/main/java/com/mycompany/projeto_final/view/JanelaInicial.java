@@ -550,7 +550,14 @@ public class JanelaInicial extends javax.swing.JFrame {
 
     private void consultarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlunoActionPerformed
         try {
-            String matricula = textConsultarAluno.getText().trim();
+            consultarAlunoAux();
+        } catch(Exception e) {
+            exibirMensagemDeExcecao(e);
+        }
+    }//GEN-LAST:event_consultarAlunoActionPerformed
+    
+    private void consultarAlunoAux() throws Exception {
+        String matricula = textConsultarAluno.getText().trim();
             AlunoResponseDTO dadosAluno = AlunoController.consultarAluno(matricula);
             LocalDate date = LocalDate.parse(dadosAluno.dataNascimento().toString());
             DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -563,11 +570,8 @@ public class JanelaInicial extends javax.swing.JFrame {
                               "TELEFONE: " + dadosAluno.telefone() + "\n" + 
                               "IDADE: " + dadosAluno.idade();
             JOptionPane.showMessageDialog(this, mensagem, "INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
-        } catch(IllegalArgumentException | AlunoNaoEncontradoException e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "INFORMATIVO", JOptionPane.INFORMATION_MESSAGE);
-        }
-    }//GEN-LAST:event_consultarAlunoActionPerformed
-
+    }
+    
     private void totalAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalAlunosActionPerformed
       
        JOptionPane.showMessageDialog(this,Long.toString(AlunoController.quantidadeTotalDeAlunos()), "QUANTIDADE DE ALUNOS", JOptionPane.INFORMATION_MESSAGE);
@@ -576,13 +580,13 @@ public class JanelaInicial extends javax.swing.JFrame {
     private void botaoAlunoMaisNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisNovoActionPerformed
         try {
             AlunoResponseDTO dadosAluno = AlunoController.maisNovo();
-            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_NOVO);
+            alunoMaisAux(dadosAluno, AlunoMais.MAIS_NOVO);
         } catch(Exception e) {
-            tratar(e);
+            exibirMensagemDeExcecao(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisNovoActionPerformed
 
-    private void subirDadosAlunoMainNovo(AlunoResponseDTO dadosAluno, AlunoMais tipo) {
+    private void alunoMaisAux(AlunoResponseDTO dadosAluno, AlunoMais tipo) {
         String tipoAluno = (tipo.equals(AlunoMais.MAIS_NOVO)) ?"MAIS NOVO" :"MAIS VELHO";
         String mensagem = "ALUNO " + tipoAluno + ": \n" +
                               "MATRÍCULA: " + dadosAluno.matricula() + "\n" +
@@ -594,16 +598,16 @@ public class JanelaInicial extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensagem, "DADOS ALUNO: ",JOptionPane.INFORMATION_MESSAGE);
     }
     
-    private void tratar(Exception e) {
+    private void exibirMensagemDeExcecao(Exception e) {
         JOptionPane.showMessageDialog(this,e.getMessage(),"INFORMATIVO",JOptionPane.INFORMATION_MESSAGE);
     }
     
     private void botaoAlunoMaisVelhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAlunoMaisVelhoActionPerformed
         try {
             AlunoResponseDTO dadosAluno = AlunoController.maisVelho();
-            subirDadosAlunoMainNovo(dadosAluno, AlunoMais.MAIS_VELHO);
+            alunoMaisAux(dadosAluno, AlunoMais.MAIS_VELHO);
         } catch(Exception e) {
-            tratar(e);
+            exibirMensagemDeExcecao(e);
         }
     }//GEN-LAST:event_botaoAlunoMaisVelhoActionPerformed
     
