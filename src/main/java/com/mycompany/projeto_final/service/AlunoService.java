@@ -3,6 +3,7 @@ package com.mycompany.projeto_final.service;
 import com.mycompany.projeto_final.dao.AlunoDAO;
 import com.mycompany.projeto_final.dao.RemocaoAlunoDAO;
 import com.mycompany.projeto_final.domain.Aluno;
+import com.mycompany.projeto_final.exception.AlunoJaCadastradoException;
 import com.mycompany.projeto_final.exception.AlunoNaoEncontradoException;
 import jakarta.persistence.PersistenceException;
 import java.time.LocalDate;
@@ -25,7 +26,8 @@ public class AlunoService {
         return AlunoDAO.getTotalAlunos();
     } 
     
-    private static boolean existeAluno(String matricula) {
+    private static boolean existeAluno(String matricula) throws Exception {
+        List<Aluno> alunos = AlunoDAO.getAllAlunos();
         for(Aluno aluno : alunos) {
             if(aluno.getMatricula().equals(matricula))
                 return true;
@@ -81,7 +83,7 @@ public class AlunoService {
     }
     
     private static boolean verificarMatricula(String matricula) {
-        char[] str = matricula.toCharArray();
+        char[] str = matricula.trim().toCharArray();
         
         if(matricula.isEmpty() || matricula.equals("MATRICULA") || matricula.isBlank()) {
             return false;
@@ -110,7 +112,7 @@ public class AlunoService {
         return idade;
     }
     
-    public static boolean addAluno(Aluno aluno) throws IllegalArgumentException, Exception {
+    public static boolean addAluno(Aluno aluno) throws Exception {
         aluno.setIdade(verificarDataDeNascimento(aluno.getDataNascimento()));
         int idade = aluno.getIdade();
         
@@ -120,18 +122,18 @@ public class AlunoService {
             throw new IllegalArgumentException("INSIRA DADOS VÁLIDOS PARA O CADASTRO");
         }
        
-        if(!existeAluno(aluno.getMatricula())) {
-            alunos.add(aluno);
-            AlunoDAO.adicionarAluno(aluno);
-            return true;
-        } 
-        return false;
+        if(existeAluno(aluno.getMatricula())) {
+            throw new AlunoJaCadastradoException("ALUNO JA EXISTENTE");
+        }
         
+        alunos.add(aluno);
+        AlunoDAO.adicionarAluno(aluno);
+        return true;
     }
     
     public static void removerAluno(String matricula) throws IllegalArgumentException, Exception {
-        if(matricula.equals("MATRICULA")) {
-            throw new IllegalArgumentException("INSIRA UMA MATRICULA");
+        if(!verificarMatricula(matricula)) {
+            throw new IllegalArgumentException("INSIRA UMA MATRICULA VALIDA");
         }
         
         List<Aluno> alunos1 = AlunoDAO.getAllAlunos();
@@ -142,11 +144,13 @@ public class AlunoService {
                 break;
             }
         }
+        
         if(aluno == null) {
             throw new AlunoNaoEncontradoException("MATRICULA INEXISTENTE");
         }
+        
         RemocaoAlunoDAO rAD = new RemocaoAlunoDAO();
-        alunos =rAD.removerAluno(alunos1, aluno);
+        alunos = rAD.removerAluno(alunos1, aluno);
         RemocaoAlunoDAO.atualizarArquivoCSV(alunos);
     }
     
@@ -200,10 +204,9 @@ public class AlunoService {
        
         if(!existeAluno(aluno.getMatricula())) {
             alunos.add(posicao,aluno);
-             AlunoDAO.adicionarAluno(aluno);
+            AlunoDAO.adicionarAluno(aluno);
             return true;
-        } else
-        {
+        } else {
             throw new Exception("Não foi possiveladicionar o aluno");
         }
         
